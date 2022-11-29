@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="https://rrcs.cachefly.net/clients/clientsamplerequest/requeststyle.css">
+  <link rel="icon" href="https://rrcs.cachefly.net/clients/clientsamplerequest/alglogo.png" sizes="32x32" />
+  <title>Algonomy sample request - category</title>
+</head>
+<body>
+  <div class="headingcontainter">
+    <img src="https://rrcs.cachefly.net/clients/clientsamplerequest/alglogo-large.png" alt="Algonomy logo">
+    <div>Sample request - category</div>
+
+  </div>
+  <div class="maincontainer">
+    <h2>Request (<span id="reqType"></span>)</h2>
+    <div id="rawrequestdisplay"></div>
+    <h2>Response</h2>
+    <div id="recsdisplaycontainer" class="resultdisplaycontainer">Loading...</div>
+    <button id="rawresponsebtn" class="togglebtn" type="button">Show/Hide the raw API response</button>
+    <pre id="rawresponsedisplay" class="resultdisplaycontainer rawdisplay"></pre>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://rrcs.cachefly.net/clients/clientsamplerequest/requestscripts.js"></script>
+  <script>
+    var reqUrl = "https://integration.richrelevance.com/rrserver/api/rrPlatform/recsForPlacements?apiKey=e24887fb666ecc3c&apiClientKey=7ad601610e7f7db5&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements=category_page.rr1&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true&categoryId=376";
+  </script>
+</body>
+</html>
