@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algonomyu</title>
+    <script>
+        function readRequest(var url){
+            let urlParams = new URLSearchParams(window.location.search);
+            let env = urlParams.get('rcs');
+            console.log(env);
+        }
+
+        let urlRec = "/rrserver/api/rrPlatform/recsForPlacements?rcs=eF5jYSlN9kgzTE01TjIy17VITTPRNTFOStZNMUq21LU0MTNISk1LNDFPTuTKLSvJTBEwNDE00DXUNQQAs-UPIQ&apiKey=e20fd45b1e19a8c6&includeRcs=true&apiClientKey=22b824484ea85588&userId=1422849&sessionId=24bb5f6e-f943-413d-8f5d-d93ba00ab31a&ssl=true&placements=purchase_complete_page&productId=14849941%7C14715317%7C14781670&o=43420296&q=1%7C1%7C1&pp=229.9%7C269.9%7C149.9";
+        readRequest(urlRec);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

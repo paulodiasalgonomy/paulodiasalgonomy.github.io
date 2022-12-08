@@ -61,11 +61,19 @@
   <h1>  
     <script defer>
       document.write(clientConfig['siteName']);
+      var rr_env = "recs"; // Em produção o padrao é 'recs' 
+        if (window.location.href.indexOf("r3_env=integration") > -1) {
+            rr_env = "integration";
+        }  
+
     </script>
-    <br />Ambiente: Recs</h1>
+    <br />
+  </h1>
 
    
   <script>
+
+    // HOME
     console.log(clientConfig);
     var placementsHome = "";
     clientConfig['placementsProd'].forEach(function(nome){
@@ -75,30 +83,74 @@
         console.log(placementsHome);
  
     });
-    document.write('<h2 id="home">Home</h2>');
-    document.write('<iframe src="./request.html?env=recs&apiKey='+clientConfig['siteAPIkey']+'&apiClientKey='+clientConfig['clientAPIkeys'][0]['clientKey']+'&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements='+placementsHome+'&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true" width="100%" height="1200"></iframe>');
-
-
-    document.write('<h2 id="category">Category Page</h2>');
+    if(placementsHome != null){
+      document.write('<h2 id="home">Home</h2>');
+      document.write('<iframe src="./request.html?env='+rr_env+'&apiKey='+clientConfig['siteAPIkey']+'&apiClientKey='+clientConfig['clientAPIkeys'][0]['clientKey']+'&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements='+placementsHome+'&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true" width="100%" height="1200"></iframe>');
+    }
+    
+    // Category
     var placementsCategory = "";
     clientConfig['placementsProd'].forEach(function(nome){
         if(nome['name'].includes('category_page')){
           placementsCategory = placementsCategory + nome['name']+"|";
         }
-
     });
     if(placementsCategory != null){
-      document.write('<iframe src="./request.html?env=recs&apiKey='+clientConfig['siteAPIkey']+'&apiClientKey='+clientConfig['clientAPIkeys'][0]['clientKey']+'&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements='+placementsCategory+'&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true&categoryId=320" width="100%" height="1200"></iframe>');
+      document.write('<h2 id="category">Category Page</h2>');
+      document.write('<iframe src="./request.html?env='+rr_env+'&apiKey='+clientConfig['siteAPIkey']+'&apiClientKey='+clientConfig['clientAPIkeys'][0]['clientKey']+'&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements='+placementsCategory+'&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true&categoryId=320" width="100%" height="1200"></iframe>');
     }
 
+    // Search
     var placementsSearch = "";
     clientConfig['placementsProd'].forEach(function(nome){
         if(nome['name'].includes('search_page')){
           placementsSearch = placementsSearch + nome['name']+"|";
         }
+    });
+    if(placementsSearch != null){
+      document.write('<h2 id="search">Search Page</h2>');
+      document.write('<iframe src="./request.html?env='+rr_env+'&apiKey='+clientConfig['siteAPIkey']+'&apiClientKey='+clientConfig['clientAPIkeys'][0]['clientKey']+'&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements='+placementsSearch+'&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true" width="100%" height="1200"></iframe>');
+    }
+
+    // Error
+    var placementsError = "";
+    clientConfig['placementsProd'].forEach(function(nome){
+        if(nome['name'].includes('error_page')){
+          placementsError = placementsError + nome['name']+"|";
+        }
 
     });
-    document.write('<iframe src="./request.html?env=recs&apiKey='+clientConfig['siteAPIkey']+'&apiClientKey='+clientConfig['clientAPIkeys'][0]['clientKey']+'&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements='+placementsSearch+'&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true" width="100%" height="1200"></iframe>');
+    if(placementsError != null){
+      document.write('<h2 id="error">Error Page</h2>');
+      document.write('<iframe src="./request.html?env='+rr_env+'&apiKey='+clientConfig['siteAPIkey']+'&apiClientKey='+clientConfig['clientAPIkeys'][0]['clientKey']+'&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements='+placementsError+'&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true" width="100%" height="1200"></iframe>');
+    }
+
+    // Item
+    var placementsItem = "";
+    clientConfig['placementsProd'].forEach(function(nome){
+        if(nome['name'].includes('item_page')){
+          placementsItem = placementsItem + nome['name']+"|";
+        }
+
+    });
+    if(placementsItem != null){
+      document.write('<h2 id="item">Item Page</h2>');
+      document.write('<iframe src="./request.html?env='+rr_env+'&apiKey='+clientConfig['siteAPIkey']+'&apiClientKey='+clientConfig['clientAPIkeys'][0]['clientKey']+'&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements='+placementsItem+'&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true&productId=47965" width="100%" height="1200"></iframe>');
+    }
+
+    // Cart Page
+    var placementsCart = "";
+    clientConfig['placementsProd'].forEach(function(nome){
+        if(nome['name'].includes('cart_page')){
+          placementsCart = placementsCart + nome['name']+"|";
+        }
+
+    });
+    if(placementsCart != null){
+      document.write('<h2 id="cart">Cart Page</h2>');
+      document.write('<iframe src="./request.html?env='+rr_env+'&apiKey='+clientConfig['siteAPIkey']+'&apiClientKey='+clientConfig['clientAPIkeys'][0]['clientKey']+'&sessionId=algtestsession623206793450&userId=algtestuser578666188542&placements='+placementsCart+'&includeStrategyData=true&excludeItemAttributes=true&categoryData=false&excludeHtml=true&productId=47965" width="100%" height="1200"></iframe>');
+    }
+
 
 
 
