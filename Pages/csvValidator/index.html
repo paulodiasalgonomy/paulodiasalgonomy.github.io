@@ -66,7 +66,7 @@
             }
 
             if (api == "/rrserver/api/rrPlatform/recsForPlacements"){
-                document.write("<table border='0'>");
+                document.write("<table border='0' class='bg-recs4P'>");
                     document.write("<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placements') + "</b></td></tr>");  
                     document.write("<tr class='bg-recs4P'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
                     document.write("<tr class='bg-recs4P'><td>API Client Key </td><td>"+ searchParams.getAll('apiClientKey') + "</b></td></tr>");
@@ -105,7 +105,7 @@
                 document.write("</table>");
 
             }else if(api == "/rrserver/api/find/v1/e20fd45b1e19a8c6"){
-                document.write("<table border='0'>");
+                document.write("<table border='0' class='bg-Find'>");
                     document.write("<tr class='bg-Find'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placement') + "</b></td></tr>");  
                     document.write("<tr class='bg-Find'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
                     document.write("<tr class='bg-Find'><td>Query</td><td>"+ searchParams.getAll('query') + "</b></td></tr>");
@@ -122,7 +122,7 @@
                     document.write("<tr class='bg-Find'><td>ssl </td><td>"+ searchParams.getAll('ssl') + "</b></td></tr>"); 
                 document.write("</table>");               
             }else if(api == "/rrserver/api/personalize"){
-                document.write("<table border='0'>");
+                document.write("<table border='0' class='bg-Personalize'>");
                     document.write("<tr class='bg-Personalize'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placements') + "</b></td></tr>");  
                     document.write("<tr class='bg-Personalize'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
                     document.write("<tr class='bg-Personalize'><td>API Client Key </td><td>"+ searchParams.getAll('apiClientKey') + "</b></td></tr>");
@@ -134,7 +134,7 @@
                     document.write("<tr class='bg-Personalize'><td>includeRcs </td><td>"+ searchParams.getAll('includeRcs') + "</b></td></tr>"); 
                 document.write("</table>");
             }else if(api == "/rrserver/api/find/v1/track/click/e20fd45b1e19a8c6"){
-                document.write("<table border='0'>");
+                document.write("<table border='0' class='bg-FindClick'>");
                     document.write("<tr class='bg-FindClick'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
                     document.write("<tr class='bg-FindClick'><td>vg </td><td>"+ searchParams.getAll('vg') + "</td></tr>");  
                     document.write("<tr class='bg-FindClick'><td>pti </td><td>"+ searchParams.getAll('pti') + "</b></td></tr>");
@@ -162,7 +162,7 @@
                     document.write("<tr class='bg-FindClick'><td>redirect </td><td>"+ searchParams.getAll('redirect') + "</b></td></tr>"); 
                 document.write("</table>");
             }else if(api == "/rrserver/click"){
-                document.write("<table border='0'>");
+                document.write("<table border='0' class='bg-RecsClick'>");
                     document.write("<tr class='bg-RecsClick'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
                     document.write("<tr class='bg-RecsClick'><td>a </td><td>"+ searchParams.getAll('a') + "</td></tr>");  
                     document.write("<tr class='bg-RecsClick'><td>vg </td><td>"+ searchParams.getAll('vg') + "</td></tr>");  
@@ -184,7 +184,7 @@
                     document.write("<tr class='bg-RecsClick'><td>redirect </td><td>"+ searchParams.getAll('redirect') + "</b></td></tr>"); 
             
             } else if(api == "/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6"){
-                document.write("<table border='0'>");
+                document.write("<table border='0' class='bg-Autocomplete'>");
                     document.write("<tr class='bg-Autocomplete'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placement') + "</b></td></tr>");  
                     document.write("<tr class='bg-Autocomplete'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
                     document.write("<tr class='bg-Autocomplete'><td>Query</td><td>"+ searchParams.getAll('query') + "</b></td></tr>");
