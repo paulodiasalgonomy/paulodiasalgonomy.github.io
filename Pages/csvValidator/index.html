@@ -23,7 +23,7 @@
             padding-top: 0.4%;
             padding-bottom: 0.1%;
         }
-        .bg-recs4P{
+        .bg-recs4P {
             background-color: #c3e3ff ;
         }
 
@@ -43,6 +43,10 @@
         .bg-Autocomplete{
             background-color: #fcdea2 ;    
         }
+
+        .bg-Discover{
+            background-color: #a2fcc1 ;    
+        }     
         .selectt {
             color: #fff;
             padding: 30px;
@@ -65,39 +69,39 @@
     
         <div>
           <input type="checkbox" id="RecsForPlacements" name="RecsForPlacements" checked value="bg-recs4P">
-          <label for="RecsForPlacements">RecsForPlacements</label>
+          <label for="RecsForPlacements" style="background-color: #c3e3ff">RecsForPlacements</label>
         </div>
     
         <div>
           <input type="checkbox" id="Find" name="Find" checked value="bg-Find">
-          <label for="Find">Find</label>
+          <label for="Find" style="background-color: #f9fcb3">Find</label>
         </div>
     
         <div>
             <input type="checkbox" id="Autocomplete" name="Autocomplete" checked value="bg-Autocomplete">
-            <label for="Autocomplete">Autocomplete</label>
+            <label for="Autocomplete" style="background-color: #fcdea2">Autocomplete</label>
           </div>
 
         <div>
           <input type="checkbox" id="Engage" name="Engage" checked value="bg-Personalize">
-          <label for="Engage">Engage</label>
+          <label for="Engage" style="background-color: #f9c3ff">Engage</label>
         </div>
     
         <div>
           <input type="checkbox" id="Discover" name="Discover" checked value="bg-Discover">
-          <label for="Discover">Discover</label>
+          <label for="Discover" style="background-color: #a2fcc1">Discover</label>
         </div>
         </div>
     
         <div>
           <input type="checkbox" id="Recs-Clicks" name="Recs-Clicks" checked value="bg-RecsClick">
-          <label for="Recs-Clicks">Recs Clicks</label>
+          <label for="Recs-Clicks" style="background-color:#cccccc">Recs Clicks</label>
         </div>
         </div>
     
         <div>
           <input type="checkbox" id="Find-Clicks" name="Find-Clicks" checked value="bg-FindClick">
-          <label for="Find-Clicks">Find Clicks</label>
+          <label for="Find-Clicks" style="background-color: #d7d89f">Find Clicks</label>
         </div>
     </fieldset>
 <br/> 
@@ -119,7 +123,9 @@
 
             if (api == "/rrserver/api/rrPlatform/recsForPlacements"){
                 document.write("<table border='0' class='bg-recs4P'>");
-                    document.write("<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placements') + "</b></td></tr>");  
+                    let placementCheck ="";
+                    //if(searchParams.getAll('placements') != 'null'){placementCheck ='<img src="ok.png" width="15"/> '};
+                    document.write("<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ placementCheck + searchParams.getAll('placements') + "</b></td></tr>");  
                     document.write("<tr class='bg-recs4P'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
                     document.write("<tr class='bg-recs4P'><td>API Client Key </td><td>"+ searchParams.getAll('apiClientKey') + "</b></td></tr>");
                     document.write("<tr class='bg-recs4P'><td>User Id </td><td>"+ searchParams.getAll('userId') + "</b></td></tr>"); 
