@@ -66,7 +66,7 @@
             }
 
             if (api == "/rrserver/api/rrPlatform/recsForPlacements"){
-                document.write("<table border='1'>");
+                document.write("<table border='0'>");
                     document.write("<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placements') + "</b></td></tr>");  
                     document.write("<tr class='bg-recs4P'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
                     document.write("<tr class='bg-recs4P'><td>API Client Key </td><td>"+ searchParams.getAll('apiClientKey') + "</b></td></tr>");
@@ -103,6 +103,7 @@
                         document.write("<tr class='bg-recs4P'><td>CategoryId </td><td>"+ searchParams.getAll('categoryId') + "</b></td></tr>");   
                     }  
                 document.write("</table>");
+
             }else if(api == "/rrserver/api/find/v1/e20fd45b1e19a8c6"){
                 document.write("<tr class='bg-Find'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placement') + "</b></td></tr>");  
                 document.write("<tr class='bg-Find'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
