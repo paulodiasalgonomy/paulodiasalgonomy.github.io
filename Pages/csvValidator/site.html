@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        table{
+            max-width: 100%;
+            width: 100%;
+            word-break:break-all;
+            margin-bottom: 20px;;
+        }
+        td{
+            min-width: 135px;
+        }
+        .bg-recs4P{
+            background-color: #c3e3ff ;
+        }
+
+        .bg-RecsClick{
+            background-color: #cccccc ;
+        }
+        .bg-Personalize{
+            background-color: #f9c3ff ;          
+        }
+        .bg-FindClick{
+            background-color: #d7d89f ;
+        }
+        .bg-Find{
+            background-color: #f9fcb3 ;    
+        }
+
+        .bg-Autocomplete{
+            background-color: #fcdea2 ;    
+        }
+
+    </style>
+    <title>Algonomy</title>
+    <script>
+        var rcsCount = 0;
+        let rcsArray = [];
+        function readRequest(url){
+
+            const paramsString = url;
+            const searchParams = new URLSearchParams(paramsString);
+
+ 
+            let api = "";
+            for (const p of searchParams) {
+                api = p[0];
+                break;
+            }
+
+            if (api == "/rrserver/api/rrPlatform/recsForPlacements"){
+                document.write("<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placements') + "</b></td></tr>");  
+                document.write("<tr class='bg-recs4P'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
+                document.write("<tr class='bg-recs4P'><td>API Client Key </td><td>"+ searchParams.getAll('apiClientKey') + "</b></td></tr>");
+                document.write("<tr class='bg-recs4P'><td>User Id </td><td>"+ searchParams.getAll('userId') + "</b></td></tr>"); 
+                document.write("<tr class='bg-recs4P'><td>Session Id </td><td>"+ searchParams.getAll('sessionId') + "</b></td></tr>");  
+                document.write("<tr class='bg-recs4P'><td>Rcs </td><td>"+ searchParams.getAll('rcs') + "</b></td></tr>"); 
+
+                if (rcsArray[rcsArray.length - 1] == searchParams.getAll('rcs')[0]){
+                    rcsCount = rcsCount  + 1;
+                }
+                rcsArray.push(searchParams.getAll('rcs'));
+                console.log(rcsArray);
+
+                if(searchParams.get('placements').includes("purchase_complete_page")){ 
+                    document.write("<tr class='bg-recs4P'><td>productId </td><td>"+ searchParams.getAll('productId') + "</b></td></tr>");  
+                    document.write("<tr class='bg-recs4P'><td>o </td><td>"+ searchParams.getAll('o') + "</b></td></tr>");  
+                    document.write("<tr class='bg-recs4P'><td>pp </td><td>"+ searchParams.getAll('pp') + "</b></td></tr>");  
+                    document.write("<tr class='bg-recs4P'><td>q </td><td>"+ searchParams.getAll('q') + "</b></td></tr>");   
+                }  
+
+                if(searchParams.get('placements').includes("add_to_cart_page")){ 
+                    document.write("<tr class='bg-recs4P'><td>atcId </td><td>"+ searchParams.getAll('atcId') + "</b></td></tr>");   
+                }  
+
+                if((searchParams.get('placements') == ("cart_page")) || (searchParams.get('placements').includes("item_page"))){ 
+                    document.write("<tr class='bg-recs4P'><td>productId </td><td>"+ searchParams.getAll('productId') + "</b></td></tr>");  
+                }  
+
+                if(searchParams.get('placements').includes("category_page")){ 
+                    document.write("<tr class='bg-recs4P'><td>CategoryId </td><td>"+ searchParams.getAll('categoryId') + "</b></td></tr>");   
+                }  
+
+                if(searchParams.get('placements').includes("search_page")){ 
+                    document.write("<tr class='bg-recs4P'><td>CategoryId </td><td>"+ searchParams.getAll('categoryId') + "</b></td></tr>");   
+                }  
+
+            }else if(api == "/rrserver/api/find/v1/e20fd45b1e19a8c6"){
+                document.write("<tr class='bg-Find'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placement') + "</b></td></tr>");  
+                document.write("<tr class='bg-Find'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
+                document.write("<tr class='bg-Find'><td>Query</td><td>"+ searchParams.getAll('query') + "</b></td></tr>");
+                document.write("<tr class='bg-Find'><td>User Id </td><td>"+ searchParams.getAll('userId') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Find'><td>Session Id </td><td>"+ searchParams.getAll('sessionId') + "</b></td></tr>");  
+                document.write("<tr class='bg-Find'><td>Rcs </td><td>"+ searchParams.getAll('rcs') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Find'><td>start</td><td>"+ searchParams.getAll('start') + "</b></td></tr>");  
+                document.write("<tr class='bg-Find'><td>Rows </td><td>"+ searchParams.getAll('rows') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Find'><td>Log </td><td>"+ searchParams.getAll('log') + "</b></td></tr>");  
+                document.write("<tr class='bg-Find'><td>Fl </td><td>"+ searchParams.getAll('fl') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Find'><td>filter </td><td>"+ searchParams.getAll('filter') + "</b></td></tr>");  
+                document.write("<tr class='bg-Find'><td>lang </td><td>"+ searchParams.getAll('lang') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Find'><td>facetDepth </td><td>"+ searchParams.getAll('facetDepth') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Find'><td>ssl </td><td>"+ searchParams.getAll('ssl') + "</b></td></tr>"); 
+            
+            }else if(api == "/rrserver/api/personalize"){
+                document.write("<tr class='bg-Personalize'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placements') + "</b></td></tr>");  
+                document.write("<tr class='bg-Personalize'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
+                document.write("<tr class='bg-Personalize'><td>API Client Key </td><td>"+ searchParams.getAll('apiClientKey') + "</b></td></tr>");
+                document.write("<tr class='bg-Personalize'><td>User Id </td><td>"+ searchParams.getAll('userId') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Personalize'><td>Session Id </td><td>"+ searchParams.getAll('sessionId') + "</b></td></tr>");  
+                document.write("<tr class='bg-Personalize'><td>ipor </td><td>"+ searchParams.getAll('ipor') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Personalize'><td>ssl </td><td>"+ searchParams.getAll('ssl') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Personalize'><td>excludeHtml </td><td>"+ searchParams.getAll('excludeHtml') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Personalize'><td>includeRcs </td><td>"+ searchParams.getAll('includeRcs') + "</b></td></tr>"); 
+            
+            }else if(api == "/rrserver/api/find/v1/track/click/e20fd45b1e19a8c6"){
+                document.write("<tr class='bg-FindClick'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
+                document.write("<tr class='bg-FindClick'><td>vg </td><td>"+ searchParams.getAll('vg') + "</td></tr>");  
+                document.write("<tr class='bg-FindClick'><td>pti </td><td>"+ searchParams.getAll('pti') + "</b></td></tr>");
+                document.write("<tr class='bg-FindClick'><td>pa </td><td>"+ searchParams.getAll('pa') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>hpi </td><td>"+ searchParams.getAll('hpi') + "</b></td></tr>");  
+                document.write("<tr class='bg-FindClick'><td>stn </td><td>"+ searchParams.getAll('stn') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>stid </td><td>"+ searchParams.getAll('stid') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>rti </td><td>"+ searchParams.getAll('rti') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>sgs </td><td>"+ searchParams.getAll('sgs') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>a </td><td>"+ searchParams.getAll('a') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>qsgs </td><td>"+ searchParams.getAll('qsgs') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>u </td><td>"+ searchParams.getAll('u') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>mvtId </td><td>"+ searchParams.getAll('mvtId') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>mvtTs </td><td>"+ searchParams.getAll('mvtTs') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>uguid </td><td>"+ searchParams.getAll('uguid') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>channelId </td><td>"+ searchParams.getAll('channelId') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>s </td><td>"+ searchParams.getAll('s') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>pg </td><td>"+ searchParams.getAll('pg') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>page </td><td>"+ searchParams.getAll('page') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>query </td><td>"+ searchParams.getAll('query') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>lang </td><td>"+ searchParams.getAll('lang') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>p </td><td>"+ searchParams.getAll('p') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>ct </td><td>"+ searchParams.getAll('ct') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>ind </td><td>"+ searchParams.getAll('ind') + "</b></td></tr>"); 
+                document.write("<tr class='bg-FindClick'><td>redirect </td><td>"+ searchParams.getAll('redirect') + "</b></td></tr>"); 
+            
+            }else if(api == "/rrserver/click"){
+                document.write("<tr class='bg-RecsClick'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
+                document.write("<tr class='bg-RecsClick'><td>a </td><td>"+ searchParams.getAll('a') + "</td></tr>");  
+                document.write("<tr class='bg-RecsClick'><td>vg </td><td>"+ searchParams.getAll('vg') + "</td></tr>");  
+                document.write("<tr class='bg-RecsClick'><td>pti </td><td>"+ searchParams.getAll('pti') + "</b></td></tr>");
+                document.write("<tr class='bg-RecsClick'><td>pa </td><td>"+ searchParams.getAll('pa') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>hpi </td><td>"+ searchParams.getAll('hpi') + "</b></td></tr>");  
+                document.write("<tr class='bg-RecsClick'><td>rti </td><td>"+ searchParams.getAll('rti') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>sgs </td><td>"+ searchParams.getAll('sgs') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>qsgs </td><td>"+ searchParams.getAll('qsgs') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>u </td><td>"+ searchParams.getAll('u') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>mvtId </td><td>"+ searchParams.getAll('mvtId') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>mvtTs </td><td>"+ searchParams.getAll('mvtTs') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>uguid </td><td>"+ searchParams.getAll('uguid') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>channelId </td><td>"+ searchParams.getAll('channelId') + "</b></td></tr>");
+                document.write("<tr class='bg-RecsClick'><td>s </td><td>"+ searchParams.getAll('s') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>pg </td><td>"+ searchParams.getAll('pg') + "</b></td></tr>");
+                document.write("<tr class='bg-RecsClick'><td>p </td><td>"+ searchParams.getAll('p') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>ct </td><td>"+ searchParams.getAll('ct') + "</b></td></tr>"); 
+                document.write("<tr class='bg-RecsClick'><td>redirect </td><td>"+ searchParams.getAll('redirect') + "</b></td></tr>"); 
+            
+            } else if(api == "/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6"){
+                document.write("<tr class='bg-Autocomplete'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placement') + "</b></td></tr>");  
+                document.write("<tr class='bg-Autocomplete'><td ><b>API </b></td><td><b>"+api + "</b></td></tr>");
+                document.write("<tr class='bg-Autocomplete'><td>Query</td><td>"+ searchParams.getAll('query') + "</b></td></tr>");
+                document.write("<tr class='bg-Autocomplete'><td>User Id </td><td>"+ searchParams.getAll('userId') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Autocomplete'><td>Session Id </td><td>"+ searchParams.getAll('sessionId') + "</b></td></tr>");  
+                document.write("<tr class='bg-Autocomplete'><td>Rcs </td><td>"+ searchParams.getAll('rcs') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Autocomplete'><td>start</td><td>"+ searchParams.getAll('start') + "</b></td></tr>");  
+                document.write("<tr class='bg-Autocomplete'><td>Rows </td><td>"+ searchParams.getAll('rows') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Autocomplete'><td>Log </td><td>"+ searchParams.getAll('log') + "</b></td></tr>");  
+                document.write("<tr class='bg-Autocomplete'><td>Fl </td><td>"+ searchParams.getAll('fl') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Autocomplete'><td>filter </td><td>"+ searchParams.getAll('filter') + "</b></td></tr>");  
+                document.write("<tr class='bg-Autocomplete'><td>lang </td><td>"+ searchParams.getAll('lang') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Autocomplete'><td>facetDepth </td><td>"+ searchParams.getAll('facetDepth') + "</b></td></tr>"); 
+                document.write("<tr class='bg-Autocomplete'><td>ssl </td><td>"+ searchParams.getAll('ssl') + "</b></td></tr>"); 
+
+            }
+
+
+
+
+        };
+        
+        requests = (';/rrserver/api/personalize&excludeHtml=true&includeRcs=true&placements=home_page.content_banner_hero_1%7Chome_page.content_banner_hero_2%7Chome_page.content_banner_hero_3%7Chome_page.content_banner_hero_4%7Chome_page.content_banner_hero_5&channelId=WEB&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=&apiClientKey=ec266a79f27bd41c&ipor=2804%3A14c%3A166%3A9309%3A%3A6896&apiKey=e20fd45b1e19a8c6;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=*&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=teste&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=*&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=testesite&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/e20fd45b1e19a8c6&lang=pt&query=testesite&placements=search_page.find&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/e20fd45b1e19a8c6&query=testesite&lang=pt&placement=search_page.find&log=true&filter=in_stock%3Atrue&responseStyle=facetsOnly&facetDepth=6&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId&rcs=eF5j4cotK8lMETA0MTTQNdQ1ZClN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMgUAnkwOng;/rrserver/api/find/v1/e20fd45b1e19a8c6&query=testesite&lang=pt&start=0&rows=24&placement=search_page.find&fl=linkId&log=true&filter=in_stock%3Atrue&facetDepth=6&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId&rcs=eF5j4cotK8lMETA0MTTQNdQ1ZClN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMgUAnkwOng&ssl=true;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=testesite&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/e20fd45b1e19a8c6&lang=pt&query=testesite&placements=search_page.find&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/engage/targeting&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&fpb=undefined&placements=home_page&pref=https://www.riachuelo.com.br/busca&q=testesite&productId=undefined&searchTerm=undefined&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6;/rrserver/api/engage/experiences&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6&variations=-1&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5;/rrserver/api/engage/trackExperienceEvent&apiKey=e20fd45b1e19a8c6&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&experienceId=867&variationId=3044&triggerType=pageload&eventType=view;/rrserver/api/personalize&excludeHtml=true&includeRcs=true&placements=home_page.content_banner_hero_1%7Chome_page.content_banner_hero_2%7Chome_page.content_banner_hero_3%7Chome_page.content_banner_hero_4%7Chome_page.content_banner_hero_5&channelId=WEB&rcs=eF5j4cotK8lMETA0MTTQNdQ1ZClN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMgUAnkwOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=&apiClientKey=ec266a79f27bd41c&ipor=2804%3A14c%3A166%3A9309%3A%3A6896&apiKey=e20fd45b1e19a8c6;/rrserver/click&a=e20fd45b1e19a8c6&vg=123ae9ea-fc40-4894-ce10-d5613c1a47e6&pti=9&pa=content_banner_hero_1&hpi=11731&rti=2&sgs=&qsgs=11702%7C8291&u=&mvtId=-1&mvtTs=1670481980243&uguid=7e77db65-9dbb-4fed-c284-c8613c1764b5&channelId=WEB&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&pg=-1&p=content__19894&ct=https%3A%2F%2Fwww.riachuelo.com.br%2Fcampanha%2Fr%2Fespecial%2Fnatal-e-festas%2Fofertas;/rrserver/api/engage/experiences&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6&variations=-1,3044&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5;/rrserver/api/engage/targeting&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&fpb=undefined&placements=category_page&productId=undefined&searchTerm=undefined&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6;/rrserver/api/personalize&categoryId=campanha%2Fr%2Fespecial%2Fnatal-e-festas%2Fofertas&excludeHtml=true&includeRcs=true&placements=category_page.category_hero_1%7Ccategory_page.category_hero_2%7Ccategory_page.category_hero_3%7Ccategory_page.category_hero_4&channelId=WEB&rcs=eF5j4cotK8lMETA0MTTQNdQ1ZClN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMgUAnkwOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=&apiClientKey=ec266a79f27bd41c&ipor=2804%3A14c%3A166%3A9309%3A%3A6896&apiKey=e20fd45b1e19a8c6;/rrserver/api/engage/experiences&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6&variations=-1,3044&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5;/rrserver/api/engage/targeting&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&fpb=undefined&placements=home_page&pref=https://www.riachuelo.com.br/cliente&productId=undefined&searchTerm=undefined&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6;/rrserver/api/engage/trackExperienceEvent&apiKey=e20fd45b1e19a8c6&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&experienceId=867&variationId=3044&triggerType=pageload&eventType=view;/rrserver/api/personalize&excludeHtml=true&includeRcs=true&placements=home_page.content_banner_hero_1%7Chome_page.content_banner_hero_2%7Chome_page.content_banner_hero_3%7Chome_page.content_banner_hero_4%7Chome_page.content_banner_hero_5&channelId=WEB&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&apiClientKey=ec266a79f27bd41c&ipor=2804%3A14c%3A166%3A9309%3A%3A6896&apiKey=e20fd45b1e19a8c6;/rrserver/click&a=e20fd45b1e19a8c6&vg=59a3597e-0368-4715-5063-28613c1868e9&pti=9&pa=content_banner_hero_1&hpi=11731&rti=2&sgs=&qsgs=11702%7C8287&u=1422849&mvtId=-1&mvtTs=1670482000160&uguid=7e77db65-9dbb-4fed-c284-c8613c1764b5&channelId=WEB&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&pg=-1&p=content__19894&ct=https%3A%2F%2Fwww.riachuelo.com.br%2Fcampanha%2Fr%2Fespecial%2Fnatal-e-festas%2Fofertas;/rrserver/api/engage/targeting&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&fpb=undefined&placements=category_page&productId=undefined&searchTerm=undefined&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6;/rrserver/api/engage/experiences&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6&variations=-1,3044&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5;/rrserver/api/personalize&categoryId=campanha%2Fr%2Fespecial%2Fnatal-e-festas%2Fofertas&excludeHtml=true&includeRcs=true&placements=category_page.category_hero_1%7Ccategory_page.category_hero_2%7Ccategory_page.category_hero_3%7Ccategory_page.category_hero_4&channelId=WEB&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&apiClientKey=ec266a79f27bd41c&ipor=2804%3A14c%3A166%3A9309%3A%3A6896&apiKey=e20fd45b1e19a8c6;/rrserver/api/rrPlatform/recsForPlacements&excludeHtml=true&excludeItemAttributes=true&categoryData=false&placements=item_page.recs_product_1%7Citem_page.recs_product_2&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&productId=14651742&apiClientKey=ec266a79f27bd41c&apiKey=e20fd45b1e19a8c6;/rrserver/apiclick&a=e20fd45b1e19a8c6&cak=ec266a79f27bd41c&channelId=ec266a79f27bd41c&vg=5ac8597e-0368-4715-5063-28613c1868e9&stid=108&pti=1&pa=32610&pos=0&p=14715309&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&u=1422849&qsgs=11702%7C8287&mvtId=-1&mvtTs=1670482012965;/rrserver/api/rrPlatform/recsForPlacements&excludeHtml=true&excludeItemAttributes=true&categoryData=false&placements=item_page.recs_product_1%7Citem_page.recs_product_2&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&productId=14715309&apiClientKey=ec266a79f27bd41c&apiKey=e20fd45b1e19a8c6;/rrserver/api/engage/targeting&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&fpb=undefined&placements=home_page&pref=https://www.riachuelo.com.br/calca-feminina-pantalona-viscolinho-branca-ak-by-riachuelo-14715309_sku&productId=undefined&searchTerm=undefined&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6;/rrserver/api/engage/experiences&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6&variations=-1,3044&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5;/rrserver/api/personalize&excludeHtml=true&includeRcs=true&placements=home_page.content_banner_hero_1%7Chome_page.content_banner_hero_2%7Chome_page.content_banner_hero_3%7Chome_page.content_banner_hero_4%7Chome_page.content_banner_hero_5&channelId=WEB&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&apiClientKey=ec266a79f27bd41c&ipor=2804%3A14c%3A166%3A9309%3A%3A6896&apiKey=e20fd45b1e19a8c6;/rrserver/api/engage/trackExperienceEvent&apiKey=e20fd45b1e19a8c6&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&experienceId=867&variationId=3044&triggerType=pageload&eventType=view;/rrserver/api/rrPlatform/recsForPlacements&excludeHtml=true&excludeItemAttributes=true&categoryData=false&placements=home_page.app_carrossel_produtos_novidades&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&apiClientKey=ec266a79f27bd41c&apiKey=e20fd45b1e19a8c6;/rrserver/api/personalize&excludeHtml=true&includeRcs=true&placements=home_page.nh_mosaico_1%7Chome_page.nh_mosaico_2%7Chome_page.nh_mosaico_3&channelId=WEB&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&apiClientKey=ec266a79f27bd41c&ipor=2804%3A14c%3A166%3A9309%3A%3A6896&apiKey=e20fd45b1e19a8c6;/rrserver/api/rrPlatform/recsForPlacements&excludeHtml=true&excludeItemAttributes=true&categoryData=false&placements=home_page.carrosselprodutos&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&apiClientKey=ec266a79f27bd41c&apiKey=e20fd45b1e19a8c6;/rrserver/click&a=e20fd45b1e19a8c6&vg=5c0b597e-0368-4715-5063-28613c1868e9&pti=9&pa=nh_mosaico_1&hpi=11776&rti=2&sgs=&qsgs=11702%7C8287&u=1422849&mvtId=-1&mvtTs=1670482026394&uguid=7e77db65-9dbb-4fed-c284-c8613c1764b5&channelId=WEB&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&pg=-1&p=content__19989&ct=https%3A%2F%2Fwww.riachuelo.com.br%2Fcampanha%2Fr%2Flp%2Ffeminino%2Fmoda-praia;/rrserver/api/engage/targeting&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&fpb=undefined&placements=category_page&productId=undefined&searchTerm=undefined&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6;/rrserver/api/engage/experiences&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6&variations=-1,3044&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5;/rrserver/api/engage/experiences&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6&variations=-1,3044&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5;/rrserver/api/engage/targeting&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&fpb=Dript%20by%20Riachuelo&placements=item_page&pref=https://www.riachuelo.com.br/campanha/r/lp/feminino/moda-praia&catalog_class=Sa%C3%ADda%20De%20Praia&productId=14708990001&searchTerm=undefined&apiClientKey=2a52873853496275&apiKey=e20fd45b1e19a8c6;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=*&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/e20fd45b1e19a8c6&query=camisa&lang=pt&placement=search_page.find&log=true&filter=in_stock%3Atrue&responseStyle=facetsOnly&facetDepth=6&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=camisa&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/e20fd45b1e19a8c6&query=camisa&lang=pt&start=0&rows=24&placement=search_page.find&fl=linkId&log=true&filter=in_stock%3Atrue&facetDepth=6&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&ssl=true;/rrserver/api/find/v1/track/click/e20fd45b1e19a8c6&a=e20fd45b1e19a8c6&vg=ca67d335-ebed-4011-89f1-f8613c1c5871&pti=2&pa=find&hpi=0&stn=PersonalizedProductSearchAndBrowse&stid=184&rti=2&sgs=&qsgs=11702%7C8287&u=1422849&mvtId=-1&mvtTs=1670482044891&uguid=7e77db65-9dbb-4fed-c284-c8613c1764b5&channelId=WEB&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&pg=-1&page=1&query=camisa&lang=pt&searchConfigId=6335251a66af58000f604334&searchType=CATALOG&p=14855020&ind=5&ct=https%3A%2F%2Fwww.riachuelo.com.br%2Fcamisa-feminina-alongada-onca-off-white-ak-by-riachuelo-14855020_sku_sku&redirect=false;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=*&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=b&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=bu&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=*&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/e20fd45b1e19a8c6&query=blusa&lang=pt&placement=search_page.find&log=true&filter=in_stock%3Atrue&responseStyle=facetsOnly&facetDepth=6&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng;/rrserver/api/find/v1/autocomplete/e20fd45b1e19a8c6&lang=pt&query=blusa&rcs=&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=;/rrserver/api/find/v1/e20fd45b1e19a8c6&query=blusa&lang=pt&start=0&rows=24&placement=search_page.find&fl=linkId&log=true&filter=in_stock%3Atrue&facetDepth=6&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&ssl=true;/rrserver/api/find/v1/track/click/e20fd45b1e19a8c6&a=e20fd45b1e19a8c6&vg=5e2d597e-0368-4715-5063-28613c1868e9&pti=2&pa=find&hpi=0&stn=PersonalizedProductSearchAndBrowse&stid=184&rti=2&sgs=&qsgs=11702%7C8287&u=1422849&mvtId=-1&mvtTs=1670482051866&uguid=7e77db65-9dbb-4fed-c284-c8613c1764b5&channelId=WEB&s=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&pg=-1&page=1&query=blusa&lang=pt&searchConfigId=6335251a66af58000f604334&searchType=CATALOG&p=14832461&ind=3&ct=https%3A%2F%2Fwww.riachuelo.com.br%2Fblusa-feminina-gola-v-marrom-ak-by-riachuelo-14832461_sku&redirect=false;/rrserver/api/rrPlatform/recsForPlacements&excludeHtml=true&excludeItemAttributes=true&categoryData=false&placements=item_page.recs_product_1%7Citem_page.recs_product_2&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&productId=14832461&apiClientKey=ec266a79f27bd41c&apiKey=e20fd45b1e19a8c6;/rrserver/api/rrPlatform/recsForPlacements&placements=purchase_complete_page&rcs=eF5jYSlN9jBPNTdPSTIz1bVMSUrSNUlLTdFNNrIw0U22MDM0TjY0NzNJMuXKLSvJTBEwNDE00DXUNQQAqwMOng&sessionId=1e9acf43-a16c-43f9-9387-5adf1dddf2f5&userId=1422849&productId=4fc127878c214d5a9425418030dd7d25%7C14832461&pp=99.99%7C59.9&q=1%7C1&o=43420854&apiClientKey=ec266a79f27bd41c&apiKey=e20fd45b1e19a8c6;');
+        
+        let requestsLines = requests.split(';');
+
+
+
+        for (const r of requestsLines) {
+            document.write("<table border='1'>");
+            readRequest(r);
+            document.write("</table>");
+        }
+
+        document.write('Houve '+rcsCount+' repetições de RCS');
+        //readRequest(urlRec);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
