@@ -19,6 +19,13 @@
         .product a{
             display: table;
         }
+        .solrDebugger{
+            max-height: 300px;
+            overflow: scroll;
+            border: 6px double #d5d5d5;
+            background-color: rgb(242, 242, 242);
+            padding: 10px;
+        }
     </style>
 
 </head>
@@ -55,7 +62,7 @@
                 if (typeof nvPairs[count+1] === 'object'){
                     console.log(nvPairs[count+1]); 
                     //jsonHTML = nvPairs[count+1].toString();
-                    jsonHTML = "<pre>"+JSON.stringify(nvPairs[count+1], null, 1)+"</pre>";
+                    jsonHTML = "<pre>"+JSON.stringify(nvPairs[count+1], null, 3)+"</pre>";
                    
                 }else{
                     //console.log('não é objeto'); 
@@ -69,6 +76,7 @@
                 const link = document.createElement("a");
                 const img = document.createElement("img");
                 const jsonDiv = document.createElement("div");
+                jsonDiv.classList.add('solrDebugger');
 
 
                 title.innerText = doc.name;
