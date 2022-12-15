@@ -151,9 +151,7 @@
                 if ((api == "/rrserver/api/rrPlatform/recsForPlacements")||(api == "/rrserver/api/rrPlatform/recsForPlacementsContext")){
                     newHTML +="<p class='bg-recs4P'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
                     newHTML += "<table border='0' class='bg-recs4P'>";
-                        let placementCheck = '';
-                        //placementCheck = (searchParams.getAll('placements') != 'null') ? (placementCheck ='<img src="ok.png" width="15"/> ') : (placementCheck ='<img src="error.png" width="15"/> '); 
-                        newHTML +="<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ placementCheck + searchParams.getAll('placements') + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placements') + "</b></td></tr>";  
                         newHTML +="<tr class='bg-recs4P'><td>API Client Key </td><td>"+ searchParams.getAll('apiClientKey') + "</td></tr>";
                         newHTML +="<tr class='bg-recs4P'><td>User Id </td><td>"+ searchParams.getAll('userId') + "</td></tr>"; 
                         newHTML +="<tr class='bg-recs4P'><td>Session Id </td><td>"+ searchParams.getAll('sessionId') + "</td></tr>";  

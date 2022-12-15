@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Debugger</title>
+    <style>
+        .product{
+            border: 1px solid rgb(148, 148, 148);
+            margin: 10px auto;
+            padding: 20px;
+            text-align: left;
+        }
+        .product img{
+            display: inline;
+            border: 1px solid rgb(177, 177, 177);
+        }
+        .product a{
+            display: table;
+        }
+    </style>
+
+</head>
+<body>
+    <script>
+        async function getRequest(){
+            let apiRequest= 'https://recs.richrelevance.com/rrserver/api/find/v1/f5dee2ddb021f84d?lang=pt&sessionId=f1e4832f-8feb-4dae-afbe-7381a8b3fd2e&rcs=eF5jYSlN9jBJMTEwTjQ01DW1NLLUNTFOMtM1SE0x1TU0NzM0NjIyskyxSOLKLSvJTBEwtLA00DXUNQQAebQNcA&ipor=&userId=&log=true&facetDepth=2&query=ponto+frio&sort=score+desc&placements=search_page.find&start=0&rows=20';
+            apiRequest = apiRequest + "&findDebug=solrDebugAll";
+            console.log(apiRequest);
+            const response = await fetch(apiRequest);
+
+            const data = await response.json();
+            const nvPairs = (data.placements[0].debug.solrDebug.explain.nvPairs);
+            const docs = (data.placements[0].docs);
+            //console.log(docs);
+            console.log(nvPairs);
+            let count = 0;
+            let html = '';
+            docs.map((doc) => {
+                console.log("Count: "+count);
+                //console.log("Explain:" + nvPairs[count]);
+
+/* 
+                console.log(doc.name);
+                console.log(doc.brand);
+                console.log(doc.categoryName);
+                console.log(doc.clickUrl);
+                console.log(doc.id);
+                console.log(doc.imageId);
+                console.log(doc.priceCents);*/
+                console.log('\n -- -- --'); 
+                var internalId = '';
+                var jsonHTML = '';
+                if (typeof nvPairs[count+1] === 'object'){
+                    console.log(nvPairs[count+1]); 
+                    //jsonHTML = nvPairs[count+1].toString();
+                    jsonHTML = "<pre>"+JSON.stringify(nvPairs[count+1], null, "\t")+"</pre>";
+                   
+                }else{
+                    //console.log('não é objeto'); 
+                    internalId = nvPairs[count];
+                }
+
+                const div = document.createElement("div");
+                div.classList.add('product');
+                const title = document.createElement("h2");
+                const body = document.createElement("p");
+                const link = document.createElement("a");
+                const img = document.createElement("img");
+                const jsonDiv = document.createElement("div");
+
+
+                title.innerText = doc.name;
+                body.innerText = "ID: "+doc.id+"\nBrand: "+doc.brand+"\nSellers: "+doc.sellers+"\nPriceCents: " + doc.priceCents+"\n InternalID: "+internalId+"\nJSON ";
+                link.innerText = "Ir para Produto";
+                link.setAttribute("href", doc.clickUrl);
+                img.setAttribute("src",doc.imageId);
+                link.setAttribute("href", doc.clickUrl);
+                img.setAttribute("width", "250");
+                jsonDiv.innerHTML = jsonHTML;
+
+
+               
+                // nvPairs.map((explain) => {
+                //     console.log(doc.nvPairs);
+                //     json.innerHTML = doc.nvPairs;
+                // }); 
+                
+                count += 2;
+
+                div.appendChild(title);
+                div.appendChild(img);
+                div.appendChild(body);
+                div.appendChild(link);
+                div.appendChild(body);
+                div.appendChild(jsonDiv);
+
+                
+                postsContainer.appendChild(div);
+
+            });
+        }
+        getRequest();
+    </script> 
+    <div id="postsContainer"></div>
+</body>
+</html>
