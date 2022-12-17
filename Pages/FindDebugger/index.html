@@ -91,7 +91,8 @@
         
             const link = document.createElement('a');
             link.innerText = 'Ir para Produto';
-            link.setAttribute('href', doc.clickUrl);
+            link.setAttribute('href', doc.clickUrl+"&redirect=true");
+            link.setAttribute('target', "_new");
         
             const img = document.createElement('img');
             img.setAttribute('src', doc.imageId);
