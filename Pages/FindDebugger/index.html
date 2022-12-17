@@ -49,14 +49,13 @@
 </head>
 <body>
 
-    <input id="urlRequest" value="https://recs.richrelevance.com/rrserver/api/find/v1/f5dee2ddb021f84d?lang=pt&sessionId=f1e4832f-8feb-4dae-afbe-7381a8b3fd2e&rcs=eF5jYSlN9jBJMTEwTjQ01DW1NLLUNTFOMtM1SE0x1TU0NzM0NjIyskyxSOLKLSvJTBEwtLA00DXUNQQAebQNcA&ipor=&userId=&log=true&facetDepth=2&query=ponto+frio&sort=score+desc&placements=search_page.find&start=0&rows=40" onChange="javascript:getRequest()">
+    <input id="urlRequest" value="" onChange="javascript:getRequest()" placeholder="Put the request here and press tab">
     <div id="docContainer"></div>
     <div id="solrContainer"></div>
 
 
     <script>
         async function getRequest() {
-
           const solrContainer = document.querySelector('#solrContainer');
           let apiRequest = document.querySelector('#urlRequest').value;
           apiRequest = `${apiRequest}&findDebug=solrDebugAll`;
@@ -109,8 +108,6 @@
 
 
         }
-        
-            getRequest();
     </script>    
 </body>
 </html>
