@@ -51,14 +51,22 @@
 <body>
 
     <input id="urlRequest" value="" onChange="javascript:getRequest()" placeholder="Put the request here and press tab">
+
     <div id="commonContainer"></div>
+   
     <div id="docContainer"></div>
+    
     <div id="solrContainer"></div>
 
 
     <script>
         async function getRequest() {
+
+          let index = 0;
+          let count = 0;
+
           const solrContainer = document.querySelector('#solrContainer');
+          solrContainer.innerHTML= '';
           let apiRequest = document.querySelector('#urlRequest').value;
           apiRequest = `${apiRequest}&findDebug=solrDebugAll`;
 
@@ -66,19 +74,15 @@
           const data = await response.json();
 
           const numFound = data.placements[0].numFound;
-          console.log(data.placements[0].spellchecked);
           const spellcheck = typeof (data.placements[0].spellchecked) === 'undefined' ? "" : "\nSpellChecked:  " + data.placements[0].spellchecked;
           let commonContainer = document.querySelector('#commonContainer');
           commonContainer.innerHTML = "<p class='common'>NumFound: " + numFound + spellcheck  +"</p>"; 
      
           const docs = data.placements[0].docs;
           const nvPairs = data.placements[0].debug.solrDebug.explain.nvPairs;
-          let count = 0;
 
-
-
-   
           docs.forEach((doc, index) => {
+            console.log(count);
             const product = document.createElement('div');
             product.classList.add('product');
         
@@ -97,7 +101,7 @@
             let docHTML ='';
             const docDiv = document.createElement('div');
             docDiv.classList.add('doc-json');
-            docDiv.innerHTML = "<pre>"+index+JSON.stringify(docs[index], null, 2)+"</pre>";        
+            docDiv.innerHTML = "<h2>Docs</h2><pre>"+index+JSON.stringify(docs[index], null, 2)+"</pre>";        
 
 
 
@@ -107,7 +111,7 @@
             }
             const debuggerDiv = document.createElement('div');
             debuggerDiv.classList.add('solr-debugger');
-            debuggerDiv.innerHTML = "<pre>"+count+jsonHTML+"</pre>";
+            debuggerDiv.innerHTML = "<h2>SOLR Debug</h2><pre>"+count+jsonHTML+"</pre>";
 
 
             product.appendChild(title);
@@ -115,7 +119,7 @@
             product.appendChild(link);
             product.appendChild(docDiv);
             product.appendChild(debuggerDiv);
-            solrContainer.innerHTML= '';
+
             solrContainer.appendChild(product);
             count += 2;
           });
