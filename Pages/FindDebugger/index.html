@@ -41,15 +41,17 @@
         #urlRequest{
             display: inline-block;
             padding: 10px;
-            width: 98%;
+            width: 90%;
             margin: 20px;
         }
+        .common{color: #fff;margin: 20px;}
     </style>
 
 </head>
 <body>
 
     <input id="urlRequest" value="" onChange="javascript:getRequest()" placeholder="Put the request here and press tab">
+    <div id="commonContainer"></div>
     <div id="docContainer"></div>
     <div id="solrContainer"></div>
 
@@ -59,12 +61,23 @@
           const solrContainer = document.querySelector('#solrContainer');
           let apiRequest = document.querySelector('#urlRequest').value;
           apiRequest = `${apiRequest}&findDebug=solrDebugAll`;
+
           const response = await fetch(apiRequest);
           const data = await response.json();
+
+          const numFound = data.placements[0].numFound;
+          console.log(data.placements[0].spellchecked);
+          const spellcheck = typeof (data.placements[0].spellchecked) === 'undefined' ? "" : "\nSpellChecked:  " + data.placements[0].spellchecked;
+          let commonContainer = document.querySelector('#commonContainer');
+          commonContainer.innerHTML = "<p class='common'>NumFound: " + numFound + spellcheck  +"</p>"; 
+     
           const docs = data.placements[0].docs;
           const nvPairs = data.placements[0].debug.solrDebug.explain.nvPairs;
           let count = 0;
-        
+
+
+
+   
           docs.forEach((doc, index) => {
             const product = document.createElement('div');
             product.classList.add('product');
@@ -102,6 +115,7 @@
             product.appendChild(link);
             product.appendChild(docDiv);
             product.appendChild(debuggerDiv);
+            solrContainer.innerHTML= '';
             solrContainer.appendChild(product);
             count += 2;
           });
