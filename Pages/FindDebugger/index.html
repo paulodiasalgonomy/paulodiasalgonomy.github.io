@@ -113,8 +113,8 @@
             }
             const debuggerDiv = document.createElement('div');
             debuggerDiv.classList.add('solr-debugger');
-            jsonHTML = jsonHTML.replace('"weight(','<span class="highlight">"weight(');
-            jsonHTML = jsonHTML.replace('result of:"','result of:"</span>');
+            jsonHTML = jsonHTML.replace('weight','<span class="highlight">weight');
+            jsonHTML = jsonHTML.replace('result of','result of</span>');
             debuggerDiv.innerHTML = "<h2>SOLR Debug</h2><pre>"+count+jsonHTML+"</pre>";
 
 
