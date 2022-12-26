@@ -113,8 +113,8 @@
             }
             const debuggerDiv = document.createElement('div');
             debuggerDiv.classList.add('solr-debugger');
-            jsonHTML = jsonHTML.replace(/weight/i,'<span class="highlight">weight');
-            jsonHTML = jsonHTML.replace(/result of/i,'result of</span>');
+            jsonHTML = jsonHTML.replace(/weight/g,'<span class="highlight">weight');
+            jsonHTML = jsonHTML.replace(/result of/g,'result of</span>');
             debuggerDiv.innerHTML = "<h2>SOLR Debug</h2><pre>"+count+jsonHTML+"</pre>";
 
 
@@ -131,6 +131,6 @@
 
         }
     </script>   
-    <small>Developed by Paulo Dias - Version 0.1.1</small> 
+    <small>Developed by Paulo Dias - Version 0.1.2</small> 
 </body>
 </html>
