@@ -54,6 +54,9 @@
             display: block;
             padding: 20px;
         }
+        .spanHide{
+            display: none;
+        }
     </style>
 
 </head>
@@ -121,9 +124,10 @@
             }
             const debuggerDiv = document.createElement('div');
             debuggerDiv.classList.add('solr-debugger');
-            jsonHTML = jsonHTML.replace(/weight/g,'<span class="highlight">weight');
-            jsonHTML = jsonHTML.replace(/result of/g,'result of</span>');
-            debuggerDiv.innerHTML = "<h2>SOLR Debug</h2><pre>"+count+jsonHTML+"</pre>";
+
+            jsonHTML = jsonHTML.replace(/weight/g,'</span><span class="highlight">weight');
+            jsonHTML = jsonHTML.replace(/result of/g,'result of</span>\n<span class="spanHide">');
+            debuggerDiv.innerHTML = "<h2>SOLR Debug</h2><pre><span class='spanHide'>"+count+jsonHTML+"</span></pre>";
 
 
             product.appendChild(title);
