@@ -126,7 +126,7 @@
             debuggerDiv.classList.add('solr-debugger');
 
             jsonHTML = jsonHTML.replace(/weight/g,'</span><span class="highlight">weight');
-            jsonHTML = jsonHTML.replace(/result of/g,'result of</span>\n<span class="spanHide">');
+            jsonHTML = jsonHTML.replace(/\[RRSimilarity\]\, result of/g,'</span>\n<span class="spanHide">');
             debuggerDiv.innerHTML = "<h2>SOLR Debug</h2><pre><span class='spanHide'>"+count+jsonHTML+"</span></pre>";
 
 
