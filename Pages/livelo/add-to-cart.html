@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add 2 Cart Page</title>
+</head>
+<body>
+    <div>
+
+        <a href="./add-to-cart.html">ADD to Cart Page</a>
+        <a href="./cart_page.html">Cart Page</a>
+    </div>
+
+    <!-- SCRIPT ALGONOMY -->
+    <script src="https://media.richrelevance.com/rrserver/js/1.2/p13n.js"></script>
+    <script src="rr.js"></script>
+    <script>
+        // Chama função com a configuração básica
+        configureR3();
+        // Define o tipo de página e os placements (vitrines que serão retornadas com recomendações, caso não tenha vitrines, pode deixar apenas o tipo da página)
+        window.R3_COMMON.addPlacementType('add_to_cart_page.teste_ab');
+        // Define Objeto do tipo ADD TO CART
+        window.R3_ADDTOCART = new r3_addtocart();
+        // Define produto adicionado ao carrinho (productId,skuId) // skuId é opcional
+        window.R3_ADDTOCART.addItemIdToCart('LVL209096~EXT3230330');
+
+        rr_flush_onload();
+        r3();
+
+        RR.jsonCallback = function(){
+            // Lógica de renderização
+            document.getElementById("jsonRR").innerHTML = "<pre>"+JSON.stringify(RR,null,"\t")+"</pre>";
+        };
+    </script>
+    <div id="jsonRR"></div>
+
+</body>
+</html>

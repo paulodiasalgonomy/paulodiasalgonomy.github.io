@@ -1,0 +1,16 @@
+//var dxp_cart_value = localStorage.getItem('total-cart-amount'); let
+dxp_cart_value = '{"data":170.9,"_expires":1669399529000}'; dxp_cart_value =
+dxp_cart_value.replace(/{"data":/gm,""); dxp_cart_value =
+dxp_cart_value.replace(/,"_expires".*}/gm,""); //alert(dxp_cart_value); let
+dxp_free_shipping = 100; let dxp_delta = (dxp_cart_value / dxp_free_shipping) *
+100; let dxp_dif = dxp_free_shipping - dxp_cart_value; //alert(dxp_delta); let
+dxp_el = document.getElementById('dxp_smartcart');
+dxp_el.style.setProperty('--progress', dxp_delta) var dxp_msg =
+document.getElementById('dxp_msg'); let dxp_local =
+document.getElementById('f-faixa-frete'); dxp_local = '
+<div id="dxp_smartcart"><span id="dxp_msg"></span></div>
+'; if(dxp_delta > 50 && dxp_delta <= 100 ){ dxp_msg.innerHTML = 'Faltam apenas
+<b>R$ '+dxp_dif+'</b> para ganhar o Frete Grátis'
+dxp_el.style.setProperty('display', 'flex') }else if(dxp_delta > 100){
+dxp_msg.innerHTML = '<b>Continue comprando, você tem frete grátis!</b>'
+dxp_el.style.setProperty('display', 'flex') }
