@@ -153,7 +153,8 @@
                     newHTML += "<table border='0' class='bg-recs4P'>";
                         newHTML +="<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placements') + "</b></td></tr>";  
                         newHTML +="<tr class='bg-recs4P'><td>API Client Key </td><td>"+ searchParams.getAll('apiClientKey') + "</td></tr>";
-                        newHTML +="<tr class='bg-recs4P'><td>User Id </td><td>"+ searchParams.getAll('userId') + "</td></tr>"; 
+                        let valUser = searchParams.getAll('userId') == '' ? "": "{User ID not found}";
+                        newHTML +="<tr class='bg-recs4P'><td>User Id </td><td>"+ searchParams.getAll('userId') + valUser + "</td></tr>"; 
                         newHTML +="<tr class='bg-recs4P'><td>Session Id </td><td>"+ searchParams.getAll('sessionId') + "</td></tr>";  
                         newHTML +="<tr class='bg-recs4P'><td>Rcs </td><td>"+ searchParams.getAll('rcs') + "</td></tr>"; 
                         newHTML +="<tr class='bg-recs4P'><td>ipor </td><td>"+ searchParams.getAll('ipor') + "</td></tr>"; 
