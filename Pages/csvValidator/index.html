@@ -189,6 +189,7 @@
                             }
 
                         }
+                        newHTML +="<tr class='bg-recs4P'><td>Full Request </td><td>"+ api + "</td></tr>"; 
                     newHTML +="</table>";
                 }else if(api == "/find/"){
                     newHTML +="<p class='bg-Find'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
