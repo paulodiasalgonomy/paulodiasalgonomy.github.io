@@ -162,13 +162,13 @@
             fullRequest = fullRequest.replace(/%5B/g,"[");
             fullRequest = fullRequest.replace(/%5D/g,"]");
             var api = (searchParams.getAll('apiRequest')[0]) || '';
-
+            console.log(api);
             let errors = '';
 
             var newHTML = '';
 
             if (api != ''){
-                console.log(api);
+
                 if(api.includes('autocomplete') === true){
                     var apiKey = api.replace('/rrserver/api/find/v1/autocomplete/','');
                     api = "/autocomplete/";
