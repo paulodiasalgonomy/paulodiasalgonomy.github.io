@@ -109,7 +109,7 @@
         .warning{color: #90640c}
         .error{color: #870202;font-weight: 600;};
     </style>
-    <title>Algonomy API Request Validation</title>
+    <title>Algonomy - API Request Validation</title>
     <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
     <script>
         function getTag(id){
@@ -169,7 +169,7 @@
 
             if (api != ''){
                 console.log(api);
-                if(api.includes('autocomplete') == true){
+                if(api.includes('autocomplete') === true){
                     var apiKey = api.replace('/rrserver/api/find/v1/autocomplete/','');
                     api = "/autocomplete/";
                 }else if(api.includes("/rrserver/api/find/v1/track/click/")){
