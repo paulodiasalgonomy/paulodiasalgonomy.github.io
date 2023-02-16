@@ -161,7 +161,8 @@
             fullRequest = fullRequest.replace(/%3A/g,":");
             fullRequest = fullRequest.replace(/%5B/g,"[");
             fullRequest = fullRequest.replace(/%5D/g,"]");
-            var api = (searchParams.getAll('apiRequest')[0]) || '';
+            var apiReq = (searchParams.getAll('apiRequest')[0]);
+            let api = apiReq || [];
             console.log(api);
             let errors = '';
 
