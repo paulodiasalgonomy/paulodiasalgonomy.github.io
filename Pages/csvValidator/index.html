@@ -200,8 +200,9 @@
 
                               
                 if ((api == "/rrserver/api/rrPlatform/recsForPlacements")||(api == "/rrserver/api/rrPlatform/recsForPlacementsContext")){
-                    newHTML +="<p class='bg-recs4P'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
+                    newHTML += "<br /> : : : : : <br />";
                     newHTML += "<table border='0' class='bg-recs4P'>";
+                        newHTML +="<tr class='bg-recs4P'><td colspan='2'><p class='bg-recs4P'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p></td></tr>"; 
                         newHTML +="<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ placements + "</b></td></tr>";  
                         newHTML +="<tr class='bg-recs4P'><td>API Client Key </td><td>"+ apiClientKey + "</td></tr>";
                         newHTML +="<tr class='bg-recs4P'><td>User Id </td><td>"+ userId + "</td></tr>"; 
@@ -245,10 +246,12 @@
 
                         newHTML +="<tr class='bg-recs4P'><td>Errors and Warnings </td><td>"+ errors + "</td></tr>"; 
                     newHTML +="</table>";
+                    newHTML += "<br /> : : : : : <br />";
 
                 }else if(api == "/find/"){
-                    newHTML +="<p class='bg-Find'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
+                    newHTML += "<br /> : : : : : <br />";
                     newHTML +="<table border='0' class='bg-Find'>";
+                        newHTML +="<tr class='bg-Find'><td colspan='2'><p class='bg-Find'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
                         newHTML +="<tr class='bg-Find'><td><b>Placement </b></td><td><b>"+ placements + "</b></td></tr>";  
                         newHTML +="<tr class='bg-Find'><td>Query</td><td>"+ searchParams.getAll('query') + "</b></td></tr>";
                         newHTML +="<tr class='bg-Find'><td>User Id </td><td>"+ userId + "</b></td></tr>"; 
@@ -271,10 +274,12 @@
                         }
 
                         newHTML +="<tr class='bg-Find'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
-                    newHTML +="</table>";               
+                    newHTML +="</table>";    
+                    newHTML += "<br /> : : : : : <br />";           
                 }else if(api == "/rrserver/api/personalize"){
-                    newHTML +="<p class='bg-Personalize'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  "+ api +"</a></p>"; 
-                    newHTML +="<table border='0' class='bg-Personalize'>";
+                    newHTML += "<br /> : : : : : <br />";
+                     newHTML +="<table border='0' class='bg-Personalize'>";
+                        newHTML +="<tr class='bg-Personalize'><td colspan='2'><p class='bg-Personalize'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  "+ api +"</a></p>"; 
                         newHTML +="<tr class='bg-Personalize'><td><b>Placement </b></td><td><b>"+ placements + "</b></td></tr>";  
                         newHTML +="<tr class='bg-Personalize'><td>API Client Key </td><td>"+ apiClientKey + "</b></td></tr>";
                         newHTML +="<tr class='bg-Personalize'><td>User Id </td><td>"+ userId + "</b></td></tr>"; 
@@ -295,9 +300,11 @@
                         }
                         newHTML +="<tr class='bg-Personalize'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
                     newHTML +="</table>";
+                    newHTML += "<br /> : : : : : <br />";
                 }else if(api == "/find-click/"){
-                    newHTML +="<p class='bg-FindClick'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
-                    newHTML +="<table border='0' class='bg-FindClick'>";
+                    newHTML += "<br /> : : : : : <br />";
+                     newHTML +="<table border='0' class='bg-FindClick'>";
+                        newHTML +="<tr class='bg-FindClick'><td colspan='2'><p class='bg-FindClick'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
                         newHTML +="<tr class='bg-FindClick'><td>vg </td><td>"+ searchParams.getAll('vg') + "</td></tr>";  
                         newHTML +="<tr class='bg-FindClick'><td>pti </td><td>"+ searchParams.getAll('pti') + "</b></td></tr>";
                         newHTML +="<tr class='bg-FindClick'><td>pa </td><td>"+ searchParams.getAll('pa') + "</b></td></tr>"; 
@@ -325,9 +332,11 @@
 
                         newHTML +="<tr class='bg-FindClick'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
                     newHTML +="</table>";
+                    newHTML += "<br /> : : : : : <br />";
                 }else if((api == "/rrserver/click") || (api == "/rrserver/apiclick")){
-                    newHTML +="<p class='bg-RecsClick'><strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
+                    newHTML += "<br /> : : : : : <br />";
                     newHTML +="<table border='0' class='bg-RecsClick'>";
+                        newHTML +="<tr class='bg-RecsClick'><td colspan='2'><p class='bg-RecsClick'><strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
                         newHTML +="<tr class='bg-RecsClick'><td>a </td><td>"+ searchParams.getAll('a') + "</td></tr>";  
                         newHTML +="<tr class='bg-RecsClick'><td>vg </td><td>"+ searchParams.getAll('vg') + "</td></tr>";  
                         newHTML +="<tr class='bg-RecsClick'><td>pti </td><td>"+ searchParams.getAll('pti') + "</b></td></tr>";
@@ -348,9 +357,11 @@
                         newHTML +="<tr class='bg-RecsClick'><td>redirect </td><td>"+ searchParams.getAll('redirect') + "</b></td></tr>"; 
                         newHTML +="<tr class='bg-RecsClick'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
                     newHTML +="</table>";
+                    newHTML += "<br /> : : : : : <br />";
                 } else if(api == "/autocomplete/"){
-                    newHTML +="<p class='bg-Autocomplete'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
-                    newHTML +="<table border='0' class='bg-Autocomplete'>";
+                    newHTML += "<br /> : : : : : <br />";
+                     newHTML +="<table border='0' class='bg-Autocomplete'>";
+                        newHTML +="<tr class='bg-Autocomplete'><td colspan='2'><strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
                         newHTML +="<tr class='bg-Autocomplete'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placement') + "</b></td></tr>";  
                         newHTML +="<tr class='bg-Autocomplete'><td><b>apiKey </b></td><td><b>"+ apiKey + "</b></td></tr>"; 
                         newHTML +="<tr class='bg-Autocomplete'><td>Query</td><td>"+ searchParams.getAll('query') + "</b></td></tr>";
@@ -372,9 +383,11 @@
                         }
                         newHTML +="<tr class='bg-Autocomplete'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
                     newHTML +="</table>";
+                    newHTML += "<br /> : : : : : <br />";
                 } else if((api == "/rrserver/api/engage/targeting") || (api == "/rrserver/api/engage/trackExperienceEvent") || (api == "/rrserver/api/engage/experiences")){
-                        newHTML +="<p class='bg-dxp'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
-                        newHTML +="<table border='0' class='bg-dxp'>";
+                    newHTML += "<br /> : : : : : <br />";
+                    newHTML +="<table border='0' class='bg-dxp'>";
+                        newHTML +="<tr class='bg-dxp'><td colspan='2'><strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
                         newHTML +="<tr class='bg-dxp'><td><b>placements </b></td><td><b>"+ placements + "</b></td></tr>";  
                         newHTML +="<tr class='bg-dxp'><td><b>apiClientKey </b></td><td><b>"+ apiClientKey + "</b></td></tr>";  
                         newHTML +="<tr class='bg-dxp'><td>apiKey</td><td>"+ searchParams.getAll('apiKey') + "</b></td></tr>";
@@ -390,9 +403,11 @@
                         newHTML +="<tr class='bg-dxp'><td>eventType </td><td>"+ searchParams.getAll('eventType') + "</b></td></tr>"; 
                         newHTML +="<tr class='bg-dxp'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
                     newHTML +="</table>";
+                    newHTML += "<br /> : : : : : <br />";
                 } else if(api == "/rrserver/p13n_generated.js"){
-                        newHTML +="<p class='bg-p13n'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
-                        newHTML +="<table border='0' class='bg-p13n'>";
+                    newHTML += "<br /> : : : : : <br />";
+                    newHTML +="<table border='0' class='bg-p13n'>";
+                        newHTML +="<tr class='bg-p13n'><td colspan='2'><strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
                         newHTML +="<tr class='bg-p13n'><td><b>placements </b></td><td><b>"+ searchParams.getAll('pt') + "</b></td></tr>";  
                         newHTML +="<tr class='bg-p13n'><td><b>apiClientKey </b></td><td><b>"+ apiClientKey + "</b></td></tr>";  
                         newHTML +="<tr class='bg-p13n'><td>apiKey</td><td>"+ searchParams.getAll('a') + "</b></td></tr>";
@@ -411,6 +426,7 @@
                         newHTML +="<tr class='bg-p13n'><td>l </td><td>"+ searchParams.getAll('l') + "</b></td></tr>"; 
                         newHTML +="<tr class='bg-p13n'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
                     newHTML +="</table>";
+                    newHTML += "<br /> : : : : : <br />";
                 }
 
             }
