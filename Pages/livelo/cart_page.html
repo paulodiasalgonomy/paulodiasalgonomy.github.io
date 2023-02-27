@@ -4,14 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart Page</title>
+    <title>Search Page</title>
 </head>
 <body>
-    <div>
-
-        <a href="./add-to-cart.html">ADD to Cart Page</a>
-        <a href="./cart_page.html">Cart Page</a>
-    </div>
 
     <!-- SCRIPT ALGONOMY -->
     <script src="https://media.richrelevance.com/rrserver/js/1.2/p13n.js"></script>
@@ -24,8 +19,7 @@
         // Define objeto do tipo Cart Page
         window.R3_CART = new r3_cart();
         // Define os produtos presentes no carrinho (productId,skuId) // skuId é opcional
-        window.R3_CART.addItemId('LVL55333988');// Chame para cada produto no carrinho
-        window.R3_CART.addItemId('LVL191781');// Chame para cada produto no carrinho
+        window.R3_CART.searchTerm('iphone');// Termo de busca
 
         rr_flush_onload();
         r3();

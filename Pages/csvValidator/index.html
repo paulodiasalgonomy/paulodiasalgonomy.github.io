@@ -133,20 +133,20 @@
 
         function errorsAndWarningsRecs(placements,apiClientKey,userId,sessionId,ipor,productId,o,rcs,pp,q,categoryId,searchTerm){
             let errorsList = '';
-            errorsList  += apiClientKey == '' ? "<span class='error'> API Key not found </span><br/>": "";
-            errorsList  += placements == '' ? "<span class='error'> Placements not found </span><br/>": "";
-            errorsList  += userId == '' ? "<span class='error'> User ID not found </span><br/>": "";
-            errorsList  += rcs == '' ? "<span class='error'> RCS not found </span><br/>": "";
+            errorsList  += apiClientKey == '' ? "<span class='error'>Error: API Key not found </span><br/>": "";
+            errorsList  += placements == '' ? "<span class='error'>Error:  Placements not found </span><br/>": "";
+            errorsList  += userId == '' ? "<span class='error'>Error:  User ID not found </span><br/>": "";
+            errorsList  += rcs == '' ? "<span class='error'>Error: RCS not found </span><br/>": "";
 
             if(placements.includes('item_page') == true){
-                errorsList  += productId == '' ? "ProductId ID not found <br/>": "";
+                errorsList  += productId == '' ? "<span class='error'>Error: ProductId ID not found </span><br/>": "";
             }
             if(placements.includes('purchase_complete') == true){
-                errorsList  += o == '' ? "<span class='error'> Order ID not found</span> <br/>": "";
-                errorsList  += pp == '' ? "<span class='error'> Product Price not found </span><br/>": "";
-                errorsList  += q == '' ? "<span class='error'> Quantity not found </span><br/>": "";
+                errorsList  += o == '' ? "<span class='error'>Error:  Order ID not found</span> <br/>": "";
+                errorsList  += pp == '' ? "<span class='error'>Error:  Product Price not found </span><br/>": "";
+                errorsList  += q == '' ? "<span class='error'>Error:  Quantity not found </span><br/>": "";
             }
-            errorsList  += ipor == '' ? "<span class='warning'> IPOR not found</span> <br/>": "";
+            errorsList  += ipor == '' ? "<span class='warning'>Warning:  IPOR not found</span> <br/>": "";
             return errorsList;
         }
 
