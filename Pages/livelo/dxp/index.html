@@ -4,7 +4,139 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Drogasil</title>
+    <title>Livelo</title>
+    <style>
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        blockquote,
+        q {
+            quotes: none;
+        }
+
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+    </style>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 
@@ -32,7 +164,7 @@
         R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
 
         R3_COMMON.setSessionId(id_sessao); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
-        R3_COMMON.setUserId();  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
+        R3_COMMON.setUserId("user-" + id_sessao + id_sessao);  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
         R3_COMMON.addPlacementType('category_page');  // (!) chama os placements do tipo da página
         var R3_CATEGORY = new r3_category(); //  (!) Define um novo objeto do tipo da página visualizada
         R3_CATEGORY.setId('Cat000346'); // (!) Precisa definir o ID da Categoria Visitada (caso seja uma página do tipo Category)
@@ -53,7 +185,7 @@
 
 
     <!-- O POP UP SERÁ EXIBIDO APÓS 90 SEGUNDOS NA PÁGINA-->
-    <img src="screenshot.png" / width="100%">
+    <img src="index.png" / width="100%">
 </body>
 
 </html>
