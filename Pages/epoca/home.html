@@ -27,8 +27,19 @@
 
         RR.jsonCallback = function () {
             // Lógica de renderização
+            var arr = RR.data.JSON.placements;
+            console.log(arr);
             document.getElementById("jsonRR").innerHTML = "<pre>" + JSON.stringify(RR, null, "\t") + "</pre>";
-        };
+            for (var i = 0; i < arr.length; i++) {
+                //console.log(arr[i].name);
+
+                // HEROS
+                if ((arr[i].name == 'home_page.fullbanner_fast_01') || (arr[i].name == 'home_page.fullbanner_fast_02') || (arr[i].name == 'home_page.fullbanner_fast_03') || (arr[i].name == 'home_page.fullbanner_fast_04')) {
+                    //console.log('aqui é hero');
+                    htmlHeros += '<div class="item"><a href="' + arr[i].content.targetURL + '" title="Ir para ' + arr[i].content.contentAlt + '">\<img src="' + arr[i].content.contentURL + '"  alt="' + arr[i].content.contentAlt + '" class="apenas-desk">\<img src="' + arr[i].content.contentURLMob + '"  alt="' + arr[i].content.contentAlt + '" class="apenas-mobile">\</a></div>';
+                    document.getElementById("jsonRR").innerHTML = "<pre>" + htmlHeros + "</pre>";
+                }
+            };
     </script>
     <div id="jsonRR"></div>
 
