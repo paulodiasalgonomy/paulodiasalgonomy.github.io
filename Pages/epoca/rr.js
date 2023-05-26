@@ -1,5 +1,5 @@
 function configureR3() {
-    let rr_env = "recs"; // Definido para Ambiente de integração: integration = homologação - recs = produção
+    let rr_env = "integration"; // Definido para Ambiente de integração: integration = homologação - recs = produção
 
     // A condicional abaixo permite alterar o ambiente das recomendações passando um parâmetro na URL. Exemplo: https://demo.richrelevance.com/?r3_env=integration
     if (window.location.href.indexOf("r3_env=integration") > -1) {
