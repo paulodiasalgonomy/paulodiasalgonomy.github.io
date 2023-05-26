@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - v0.0.2</title>
+    <title>Home - v0.0.3</title>
     <style>
         .item {
             display: table;
@@ -52,7 +52,7 @@
 
         RR.jsonCallback = function () {
             var arr = RR.data.JSON.placements;
-            var htmlInsert = "";
+            var htmlInsert = "<div>";
             console.log(arr);
 
             for (var i = 0; i < arr.length; i++) {
@@ -73,11 +73,15 @@
                     htmlInsert += '<div class="item"><span>FULL BANNER RODAPE</span><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '" /><img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk" /><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile " /></a></div>';
                 }
             }
-            htmlInsert += "<pre>" + JSON.stringify(RR, null, "\t") + "</pre>";
+            htmlInsert += "</div><pre>" + JSON.stringify(RR, null, "\t") + "</pre>";
             document.getElementById("jsonRR").innerHTML = htmlInsert;
         };
     </script>
-    <div id="jsonRR"></div>
+    <div id="jsonRR">
+
+
+
+    </div>
 
 </body>
 
