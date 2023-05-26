@@ -58,19 +58,19 @@
             for (var i = 0; i < arr.length; i++) {
                 // FULLBANNER
                 if ((arr[i].name == 'home_page.fullbanner_fast_01') || (arr[i].name == 'home_page.fullbanner_fast_02') || (arr[i].name == 'home_page.fullbanner_fast_03') || (arr[i].name == 'home_page.fullbanner_fast_04')) {
-                    htmlInsert += '<div class="item"><span>FULLBANNER</span><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '"><img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk" /><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile " /></a><div class="clear"></div></div>';
+                    htmlInsert += '<div data-placement-type="' + arr[i].name + '" class="item"><span>FULLBANNER</span><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '"><img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk" /><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile " /></a><div class="clear"></div></div>';
                 }
                 // MIDIA CARDS TAKEOVER
                 if ((arr[i].name == 'home_page.midia_cards_takeover01') || (arr[i].name == 'home_page.midia_cards_takeover02') || (arr[i].name == 'home_page.midia_cards_takeover03') || (arr[i].name == 'home_page.midia_cards_takeover04') || (arr[i].name == 'home_page.midia_cards_takeover04') || (arr[i].name == 'home_page.midia_cards_takeover05')) {
-                    htmlInsert += '<div class="item"><span>TAKEOVER</span><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '"><img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk" /><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile " /></a></div>';
+                    htmlInsert += '<div data-placement-type="' + arr[i].name + '"  class="item"><span>TAKEOVER</span><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '"><img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk" /><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile " /></a></div>';
                 }
                 // MIDIA CARDS CENTRO
                 if ((arr[i].name == 'home_page.midia_cards_centro_posicao01') || (arr[i].name == 'home_page.midia_cards_centro_posicao02') || (arr[i].name == 'home_page.midia_cards_centro_posicao03') || (arr[i].name == 'home_page.midia_cards_centro_posicao04') || (arr[i].name == 'home_page.midia_cards_centro_posicao05')) {
-                    htmlInsert += '<div class="item"><span>MIDIA CARDS CENTRO</span><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '"><img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk" /><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile " /></a></div>';
+                    htmlInsert += '<div data-placement-type="' + arr[i].name + '"  class="item"><span>MIDIA CARDS CENTRO</span><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '"><img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk" /><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile " /></a></div>';
                 }
                 // FULL BANNER RODAPE
                 if ((arr[i].name == 'home_page.full_banner_rodape')) {
-                    htmlInsert += '<div class="item"><span>FULL BANNER RODAPE</span><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '" /><img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk" /><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile " /></a></div>';
+                    htmlInsert += '<div data-placement-type="' + arr[i].name + '"  class="item"><span>FULL BANNER RODAPE</span><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '" /><img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk" /><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile " /></a></div>';
                 }
             }
             htmlInsert += "</div><pre>" + JSON.stringify(RR, null, "\t") + "</pre>";
