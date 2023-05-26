@@ -31,13 +31,11 @@
         r3();
 
         RR.jsonCallback = function () {
-            // Lógica de renderização
             var arr = RR.data.JSON.placements;
             var htmlInsert = "";
             console.log(arr);
 
             for (var i = 0; i < arr.length; i++) {
-                //console.log(arr[i].name);
                 // FULLBANNER
                 if ((arr[i].name == 'home_page.fullbanner_fast_01') || (arr[i].name == 'home_page.fullbanner_fast_02') || (arr[i].name == 'home_page.fullbanner_fast_03') || (arr[i].name == 'home_page.fullbanner_fast_04')) {
                     htmlInsert += '// FULLBANNER<div class="item '+arr[i].name+'"><br/><a href="' + arr[i].content.clickURL + '" title="Ir para ' + arr[i].content.imgAlt + '">\<img src="' + arr[i].content.imgURL + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-desk">\<br/><img src="' + arr[i].content.imgURLMobile + '"  alt="' + arr[i].content.imgAlt + '" class="apenas-mobile ">\</a></div>';
