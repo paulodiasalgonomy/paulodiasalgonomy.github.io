@@ -158,21 +158,22 @@
             rr_env = "integration";
         }  
         
-        R3_COMMON.setApiKey('b585440a90ab9e49'); // API KEY 
-        R3_COMMON.apiClientKey = 'bf5c2b25e12d7c61'; // adicionado apiClientKey
+        window.R3_COMMON.setApiKey('b585440a90ab9e49'); // API KEY 
+        window. R3_COMMON.apiClientKey = 'bf5c2b25e12d7c61'; // adicionado apiClientKey
 
-        R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
+        window.R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
 
-        R3_COMMON.setSessionId(id_sessao); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
-        R3_COMMON.setUserId("user-" + id_sessao + id_sessao);  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
-        R3_COMMON.addPlacementType('item_page');  // (!) chama os placements do tipo da página
-        var R3_ITEM = new r3_item(); //  (!) Define um novo objeto do tipo da página visualizada
-        R3_ITEM.setId('90762021'); // (!) Precisa definir o ID da Categoria Visitada (caso seja uma página do tipo Category)
+        window.R3_COMMON.setSessionId(id_sessao); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
+        window.R3_COMMON.setUserId("user-" + id_sessao + id_sessao);  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
+        window.R3_COMMON.addPlacementType('item_page');  // (!) chama os placements do tipo da página
 
-        
-        R3_COMMON.itemId = R3_ITEM.id; // Atribuido itemId
-        R3_COMMON.placements = R3_COMMON.placementType; // Atribuido placement
-        R3_COMMON.pref = document.referrer; // Atribuido url referer
+        window.R3_ITEM = new r3_item();
+        window.R3_ITEM.setId('90762021');
+        window.R3_ITEM.setName('NOME DO PRODUTO');
+
+        window.R3_COMMON.itemId = R3_ITEM.id; // Atribuido itemId
+        window.R3_COMMON.placements = R3_COMMON.placementType; // Atribuido placement
+        window.window.R3_COMMON.pref = document.referrer; // Atribuido url referer
         var script = document.createElement('script'); // Chama o clientJs
         script.src = 'https://cdn.richrelevance.com/dashboard/applications/clientjs-dev/client.js';
         document.getElementsByTagName('head')[0].appendChild(script);
