@@ -156,7 +156,7 @@
             rr_env = "integration";
         }  
         
-        window.R3_COMMON.setApiKey('36afa20de99f09af'); // API KEY da Drogasil
+        window.R3_COMMON.setApiKey('36afa20de99f09af'); // API KEY da Livelo
         window.R3_COMMON.apiClientKey = '4e1b38534591cd48'; // adicionado apiClientKey
 
         window.R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
@@ -164,13 +164,11 @@
         window.R3_COMMON.setSessionId(id_sessao); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
         window.R3_COMMON.setUserId("user-" + id_sessao + id_sessao);  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
         window.R3_COMMON.addPlacementType('item_page');  // (!) chama os placements do tipo da página
-        var ITEM = new r3_item(); //  (!) Define um novo objeto do tipo da página visualizada
-        R3_ITEM.setId('LVL53891930'); // (!) Precisa definir o ID da Produto Visitada (caso seja uma página do tipo Category)
-        R3_ITEM.setName('iPhone 13 Apple 128GB Meia-noite Tela de 6,1”, Câmera Dupla de 12MP'); // (!) Definir nome da Produto
 
+        var R3_ITEM = new R3_ITEM();
+        R3_ITEM.setId('LVL188811');
 
-        
-        window.R3_COMMON.productId = R3_ITEM.id; // Atribuido categoryId
+        window.R3_COMMON.productId = R3_ITEM.id;
         window.R3_COMMON.placements = window.R3_COMMON.placementType; // Atribuido placement
         window.R3_COMMON.pref = document.referrer; // Atribuido url referer
         var script = document.createElement('script'); // Chama o clientJs
@@ -184,7 +182,7 @@
 
 
     <!-- O POP UP SERÁ EXIBIDO APÓS 90 SEGUNDOS NA PÁGINA-->
-    <img src="index.png" / width="100%">
+    <h1>Brand Page - Apple</h1>
 </body>
 
 </html>
