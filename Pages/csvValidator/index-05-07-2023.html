@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        *,html,body{
+            padding: 0;
+            margin: 0;
+            text-align: left;
+        }
+        #header{    
+            background: #1e6fff;
+            width: 100vh;
+            min-width: 100%;
+            margin-bottom:30px;
+
+        }
+        #header img{
+            max-width: 120px;
+        }  
+        fieldset{
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 40px;
+            width: 48%;
+             float: left;
+        }
+        #fileSender{
+            padding-left: 20px;
+            font-family: sans-serif;
+            float: left;
+        }
+        #fileSender input{
+            border: 1px solid black;
+            padding: 20px 10px;
+            width: 400px;
+            background-color: #1e6fff;
+            color: aliceblue;
+            text-transform: uppercase;
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+            cursor: pointer;
+        }      
+        table{
+            max-width: 100%;
+            width: 100%;
+            word-break:break-all;
+            border: 0;
+
+        }
+        #content{
+            padding-left: 20px;
+            padding-right: 20px;
+            clear: both;
+        }
+        td{
+            min-width: 135px;
+            border: 0;
+            border-bottom: 1px dotted #212121;
+            padding-top: 0.4%;
+            padding-bottom: 0.1%;
+        }
+        .bg-recs4P {
+            background-color: #c3e3ff ;
+        }
+
+        .bg-RecsClick{
+            background-color: #cccccc ;
+        }
+        .bg-Personalize{
+            background-color: #f9c3ff ;          
+        }
+        .bg-FindClick{
+            background-color: #d7d89f ;
+        }
+        .bg-Find{
+            background-color: #f9fcb3 ;    
+        }
+
+        .bg-Autocomplete{
+            background-color: #fcdea2 ;    
+        }
+
+        .bg-Discover{
+            background-color: #a2fcc1 ;    
+        }     
+        .bg-dxp{
+            background-color: #ffdff3 ;          
+        }
+        .bg-p13n{
+            background-color: #ffb6b6;
+        }
+        .selectt {
+            color: #fff;
+            padding: 30px;
+            display: none;
+            margin-top: 30px;
+            width: 60%;
+            background: green
+        }
+        p{
+            background-color: #fff !important;
+        }
+        .warning{color: #90640c}
+        .error{color: #870202;font-weight: 600;};
+    </style>
+    <title>Algonomy - API Request Validation</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.min.js" integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA=" crossorigin="anonymous"></script>
+    <script>
+        function getTag(id){
+            return document.getElementById(id);
+        }
+        function splitLines(txt){
+            var splitted = txt.replace(/\"\@timestamp(.*)type.keyword\"/g,"");
+            splitted = splitted.replace(/\"(.*)hostName"":""/g,"&host=");
+            splitted = splitted.replace(/\"",""timestamp(.*) \- \- /g,"&time=");
+            splitted = splitted.replace(/ \+0000/g,"");
+            splitted = splitted.replace(/ ""GET /g,"&apiRequest="); 
+            splitted = splitted.replace(/ ""POST /g,"&apiRequest="); 
+            splitted = splitted.replace(/\ HTTP\/(.*)/g,";");
+            splitted = splitted.replace(/\n/g,"");
+            splitted = splitted.replace(/\;\n/g,";");
+            splitted = splitted.replace(/\?/g,"&");
+            //splitted = splitted.replace(/\/rrserver\/api\/find\/v1\/autocomplete\/(.*)&/g,"/autocomplete/");
+            //splitted = splitted.replace(/\/rrserver\/api\/find\/v1\//g,"/rrserver/api/find/v1/apiKey=");
+
+            return splitted;
+        }
+
+        function errorsAndWarningsRecs(placements,apiClientKey,userId,sessionId,ipor,productId,o,rcs,pp,q,categoryId,searchTerm){
+            let errorsList = '';
+            errorsList  += apiClientKey == '' ? "<span class='error'>Error: API Key not found </span><br/>": "";
+            errorsList  += placements == '' ? "<span class='error'>Error:  Placements not found </span><br/>": "";
+            errorsList  += userId == '' ? "<span class='error'>Error:  User ID not found </span><br/>": "";
+            errorsList  += rcs == '' ? "<span class='error'>Error: RCS not found </span><br/>": "";
+
+            if(placements.includes('item_page') == true){
+                errorsList  += productId == '' ? "<span class='error'>Error: ProductId ID not found </span><br/>": "";
+            }
+            if(placements.includes('purchase_complete') == true){
+                errorsList  += o == '' ? "<span class='error'>Error:  Order ID not found</span> <br/>": "";
+                errorsList  += pp == '' ? "<span class='error'>Error:  Product Price not found </span><br/>": "";
+                errorsList  += q == '' ? "<span class='error'>Error:  Quantity not found </span><br/>": "";
+            }
+            errorsList  += ipor == '' ? "<span class='warning'>Warning:  IPOR not found</span> <br/>": "";
+            return errorsList;
+        }
+
+        function readRequest(url,rcsCount,rcsArray){
+            const paramsString = url;
+            const searchParams = new URLSearchParams(paramsString);
+            let fullRequest = searchParams.toString();
+            fullRequest = fullRequest.replace(/host=(.*)apiRequest=/g,"");
+            fullRequest = fullRequest.replace(/%2F/g,"/");
+            fullRequest = fullRequest.replace(/%7C/g,"|");
+            fullRequest = fullRequest.replace(/%3A/g,":");
+            fullRequest = fullRequest.replace(/%5B/g,"[");
+            fullRequest = fullRequest.replace(/%5D/g,"]");
+            var apiReq = (searchParams.getAll('apiRequest')[0]);
+            let api = apiReq || [];
+            console.log(api);
+            let errors = '';
+
+            var newHTML = '';
+
+            if (api != ''){
+
+                if(api.includes('autocomplete') === true){
+                    var apiKey = api.replace('/rrserver/api/find/v1/autocomplete/','');
+                    api = "/autocomplete/";
+                }else if(api.includes("/rrserver/api/find/v1/track/click/")){
+                    var apiKey = api.replace('/rrserver/api/find/v1/track/click/','');
+                    api = "/find-click/";
+                }else if(api.includes("/rrserver/api/find/v1/")){
+                    var apiKey = api.replace('/rrserver/api/find/v1/','');
+                    api = "/find/";
+                }
+
+                const placements = searchParams.getAll('placements') + searchParams.getAll('placement');
+                const apiClientKey = searchParams.getAll('apiClientKey');
+                const userId = searchParams.getAll('userId');
+                const sessionId = searchParams.getAll('sessionId');
+                const ipor = searchParams.getAll('ipor');
+                const productId = searchParams.getAll('productId');  
+                const o = searchParams.getAll('o');
+                const rcs =  searchParams.getAll('rcs')[0];
+                const pp = searchParams.getAll('pp');
+                const q = searchParams.getAll('q');
+                const categoryId  = searchParams.getAll('categoryId');
+                const searchTerm = searchParams.getAll('searchTerm');
+                const atcId = searchParams.getAll('atcId');
+                
+                
+                                        
+
+                              
+                if ((api == "/rrserver/api/rrPlatform/recsForPlacements")||(api == "/rrserver/api/rrPlatform/recsForPlacementsContext")){
+                    newHTML += "<br /> : : : : :";
+                    newHTML += "<table border='0' class='bg-recs4P'>";
+                        newHTML +="<tr class='bg-recs4P'><td colspan='2'><p class='bg-recs4P'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p></td></tr>"; 
+                        newHTML +="<tr class='bg-recs4P'><td><b>Placement </b></td><td><b>"+ placements + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-recs4P'><td>API Client Key </td><td>"+ apiClientKey + "</td></tr>";
+                        newHTML +="<tr class='bg-recs4P'><td>User Id </td><td>"+ userId + "</td></tr>"; 
+                        newHTML +="<tr class='bg-recs4P'><td>Session Id </td><td>"+ sessionId + "</td></tr>";  
+                        newHTML +="<tr class='bg-recs4P'><td>Rcs </td><td>"+ rcs + "</td></tr>"; 
+                        newHTML +="<tr class='bg-recs4P'><td>ipor </td><td>"+ ipor + "</td></tr>"; 
+                        if (rcsArray[rcsArray.length - 1] == rcs){
+                            rcsCount = rcsCount  + 1;
+                        }
+                        
+                        rcsArray.push(rcs);
+                        if(searchParams.get('placements').includes("purchase_complete_page")){ 
+                            newHTML +="<tr class='bg-recs4P'><td><b>productId</b> </td><td><b>"+ productId + "</b></td></tr>";  
+                            newHTML +="<tr class='bg-recs4P'><td><b>o </b></td><td><b>"+ o + "</td></tr>";  
+                            newHTML +="<tr class='bg-recs4P'><td><b>pp </b></td><td><b>" + pp + "</td></tr>";  
+                            newHTML +="<tr class='bg-recs4P'><td><b>q </b></td><td><b>"+ q + "</td></tr>";   
+                        }  
+                        if(searchParams.get('placements').includes("add_to_cart_page")){ 
+                            newHTML +="<tr class='bg-recs4P'><td><b>atcId</b> </td><td><b>"+ atcId + "</b></td></tr>";   
+                        }  
+                        if((searchParams.get('placements') == ("cart_page")) || (searchParams.get('placements').includes("item_page"))){ 
+                            newHTML +="<tr class='bg-recs4P'><td><b>productId</b> </td><td><b>"+ productId + "</b></td></tr>";  
+                        }  
+                        if(searchParams.get('placements').includes("category_page")){ 
+                            newHTML +="<tr class='bg-recs4P'><td><b>CategoryId</b> </td><td><b>"+ categoryId + "</b></td></tr>";   
+                        }  
+                        if(searchParams.get('placements').includes("search_page")){ 
+                            newHTML +="<tr class='bg-recs4P'><td><b>Search Term</b> </td><td><b>"+ searchTerm + "</b></td></tr>";   
+                        }  
+
+                        let optionalParams = ['ppc','sgs','userAttribute','attributeList','bi','categoryData','ctp','cts','excludeHtml','excludeItemAttributes','excludeRecItems','fdm','filbr','filcat','filcatinc','flv','includeBrandFilteredProducts','includeStrategyData','jsonp','maxPriceFilter','minPriceFilter','includePriceFilteredProducts','returnMinimalRecItemData','aari','rg','rgt','rid','strategySet','ts','udd','rfm','rfb','mvt_ftr','jcb'];
+                        for (const opt of optionalParams) {
+                            if(searchParams.getAll(opt) != '' ){
+                                newHTML +="<tr class='bg-recs4P'><td>"+opt+" </td><td>"+ searchParams.getAll(opt) + "</b></td></tr>";
+                            }
+
+                        }
+                        newHTML +="<tr class='bg-recs4P'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
+
+                        errors = errorsAndWarningsRecs(placements,apiClientKey,userId,sessionId,ipor,productId,o,rcs,pp,q,categoryId,searchTerm);
+
+                        newHTML +="<tr class='bg-recs4P'><td>Errors and Warnings </td><td>"+ errors + "</td></tr>"; 
+                    newHTML +="</table>";
+                    newHTML += " : : : : :";
+
+                }else if(api == "/find/"){
+                    newHTML += "<br /> : : : : :";
+                    newHTML +="<table border='0' class='bg-Find'>";
+                        newHTML +="<tr class='bg-Find'><td colspan='2'><p class='bg-Find'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
+                        newHTML +="<tr class='bg-Find'><td><b>Placement </b></td><td><b>"+ placements + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-Find'><td>Query</td><td>"+ searchParams.getAll('query') + "</b></td></tr>";
+                        newHTML +="<tr class='bg-Find'><td>User Id </td><td>"+ userId + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Find'><td>Session Id </td><td>"+ sessionId + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-Find'><td>Rcs </td><td>"+ searchParams.getAll('rcs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Find'><td>apiKey </td><td>"+ apiKey + "</b></td></tr>";                
+                        newHTML +="<tr class='bg-Find'><td>channelId </td><td>"+ searchParams.getAll('channelId') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Find'><td>start</td><td>"+ searchParams.getAll('start') + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-Find'><td>Rows </td><td>"+ searchParams.getAll('rows') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Find'><td>Log </td><td>"+ searchParams.getAll('log') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Find'><td>lang </td><td>"+ searchParams.getAll('lang') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Find'><td>ssl </td><td>"+ searchParams.getAll('ssl') + "</b></td></tr>";
+                        
+                        let optionalParams = ['fl','filter','facetDepth','facet','sort','facet.limit','facet.mincount','findCallType','pref','region','responseStyle','spellcheck','tie','mm','ngramSearch','callback'];
+                        for (const opt of optionalParams) {
+                            if(searchParams.getAll(opt) != '' ){
+                                newHTML +="<tr class='bg-Find'><td>"+opt+" </td><td>"+ searchParams.getAll(opt) + "</b></td></tr>";
+                            }
+
+                        }
+
+                        newHTML +="<tr class='bg-Find'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
+                    newHTML +="</table>";    
+                    newHTML += " : : : : :";           
+                }else if(api == "/rrserver/api/personalize"){
+                    newHTML += "<br /> : : : : :";
+                     newHTML +="<table border='0' class='bg-Personalize'>";
+                        newHTML +="<tr class='bg-Personalize'><td colspan='2'><p class='bg-Personalize'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  "+ api +"</a></p>"; 
+                        newHTML +="<tr class='bg-Personalize'><td><b>Placement </b></td><td><b>"+ placements + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-Personalize'><td>API Client Key </td><td>"+ apiClientKey + "</b></td></tr>";
+                        newHTML +="<tr class='bg-Personalize'><td>User Id </td><td>"+ userId + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Personalize'><td>Session Id </td><td>"+ sessionId + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-Personalize'><td>ipor </td><td>"+ ipor + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Personalize'><td>ssl </td><td>"+ searchParams.getAll('ssl') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Personalize'><td>includeRcs </td><td>"+ searchParams.getAll('includeRcs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Personalize'><td>channelId </td><td>"+ searchParams.getAll('channelId') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Personalize'><td>rcs </td><td>"+ searchParams.getAll('rcs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Personalize'><td>apiKey </td><td>"+ searchParams.getAll('apiKey') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Personalize'><td>cv </td><td>"+ searchParams.getAll('cv') + "</b></td></tr>"; 
+
+                        let optionalParams = ['pref','categoryId','productId','atcid','fpb','bi','callback','categoryData','excludeHtml','includeRcs','ssl','recentlyPurchased','rid','sgs','userAttribute'];
+                        for (const o of optionalParams) {
+                            if(searchParams.getAll(o) != '' ){
+                                newHTML +="<tr class='bg-Personalize'><td>"+o+" </td><td>"+ searchParams.getAll(o) + "</b></td></tr>";
+                            }
+                        }
+                        newHTML +="<tr class='bg-Personalize'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
+                    newHTML +="</table>";
+                    newHTML += ": : : : :";
+                }else if(api == "/find-click/"){
+                    newHTML += "<br /> : : : : :";
+                     newHTML +="<table border='0' class='bg-FindClick'>";
+                        newHTML +="<tr class='bg-FindClick'><td colspan='2'><p class='bg-FindClick'> <strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>vg </td><td>"+ searchParams.getAll('vg') + "</td></tr>";  
+                        newHTML +="<tr class='bg-FindClick'><td>pti </td><td>"+ searchParams.getAll('pti') + "</b></td></tr>";
+                        newHTML +="<tr class='bg-FindClick'><td>pa </td><td>"+ searchParams.getAll('pa') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>hpi </td><td>"+ searchParams.getAll('hpi') + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-FindClick'><td>stn </td><td>"+ searchParams.getAll('stn') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>stid </td><td>"+ searchParams.getAll('stid') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>rti </td><td>"+ searchParams.getAll('rti') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>sgs </td><td>"+ searchParams.getAll('sgs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>a </td><td>"+ searchParams.getAll('a') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>qsgs </td><td>"+ searchParams.getAll('qsgs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>u </td><td>"+ searchParams.getAll('u') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>mvtId </td><td>"+ searchParams.getAll('mvtId') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>mvtTs </td><td>"+ searchParams.getAll('mvtTs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>uguid </td><td>"+ searchParams.getAll('uguid') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>channelId </td><td>"+ searchParams.getAll('channelId') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>s </td><td>"+ searchParams.getAll('s') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>pg </td><td>"+ searchParams.getAll('pg') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>page </td><td>"+ searchParams.getAll('page') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>query </td><td>"+ searchParams.getAll('query') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>lang </td><td>"+ searchParams.getAll('lang') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>p </td><td>"+ searchParams.getAll('p') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>ct </td><td>"+ searchParams.getAll('ct') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>ind </td><td>"+ searchParams.getAll('ind') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-FindClick'><td>redirect </td><td>"+ searchParams.getAll('redirect') + "</b></td></tr>"; 
+
+                        newHTML +="<tr class='bg-FindClick'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
+                    newHTML +="</table>";
+                    newHTML += " : : : : :";
+                }else if((api == "/rrserver/click") || (api == "/rrserver/apiclick")){
+                    newHTML += "<br /> : : : : :";
+                    newHTML +="<table border='0' class='bg-RecsClick'>";
+                        newHTML +="<tr class='bg-RecsClick'><td colspan='2'><p class='bg-RecsClick'><strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>a </td><td>"+ searchParams.getAll('a') + "</td></tr>";  
+                        newHTML +="<tr class='bg-RecsClick'><td>vg </td><td>"+ searchParams.getAll('vg') + "</td></tr>";  
+                        newHTML +="<tr class='bg-RecsClick'><td>pti </td><td>"+ searchParams.getAll('pti') + "</b></td></tr>";
+                        newHTML +="<tr class='bg-RecsClick'><td>pa </td><td>"+ searchParams.getAll('pa') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>hpi </td><td>"+ searchParams.getAll('hpi') + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-RecsClick'><td>rti </td><td>"+ searchParams.getAll('rti') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>sgs </td><td>"+ searchParams.getAll('sgs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>qsgs </td><td>"+ searchParams.getAll('qsgs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>u </td><td>"+ searchParams.getAll('u') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>mvtId </td><td>"+ searchParams.getAll('mvtId') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>mvtTs </td><td>"+ searchParams.getAll('mvtTs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>uguid </td><td>"+ searchParams.getAll('uguid') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>channelId </td><td>"+ searchParams.getAll('channelId') + "</b></td></tr>";
+                        newHTML +="<tr class='bg-RecsClick'><td>s </td><td>"+ searchParams.getAll('s') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>pg </td><td>"+ searchParams.getAll('pg') + "</b></td></tr>";
+                        newHTML +="<tr class='bg-RecsClick'><td>p </td><td>"+ searchParams.getAll('p') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>ct </td><td>"+ searchParams.getAll('ct') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>redirect </td><td>"+ searchParams.getAll('redirect') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-RecsClick'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
+                    newHTML +="</table>";
+                    newHTML += " : : : : :";
+                } else if(api == "/autocomplete/"){
+                    newHTML += "<br /> : : : : :";
+                     newHTML +="<table border='0' class='bg-Autocomplete'>";
+                        newHTML +="<tr class='bg-Autocomplete'><td colspan='2'><strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
+                        newHTML +="<tr class='bg-Autocomplete'><td><b>Placement </b></td><td><b>"+ searchParams.getAll('placement') + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-Autocomplete'><td><b>apiKey </b></td><td><b>"+ apiKey + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Autocomplete'><td>Query</td><td>"+ searchParams.getAll('query') + "</b></td></tr>";
+                        newHTML +="<tr class='bg-Autocomplete'><td>User Id </td><td>"+ userId + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Autocomplete'><td>Session Id </td><td>"+ sessionId + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-Autocomplete'><td>Rcs </td><td>"+ searchParams.getAll('rcs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Autocomplete'><td>start</td><td>"+ searchParams.getAll('start') + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-Autocomplete'><td>Rows </td><td>"+ searchParams.getAll('rows') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Autocomplete'><td>Log </td><td>"+ searchParams.getAll('log') + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-Autocomplete'><td>Fl </td><td>"+ searchParams.getAll('fl') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-Autocomplete'><td>lang </td><td>"+ searchParams.getAll('lang') + "</b></td></tr>"; 
+                                                
+                        let optionalParams = ['ssl','fl','filter','facetDepth','facet','sort','facet.limit','facet.mincount','findCallType','pref','region','responseStyle','spellcheck','tie','mm','ngramSearch','callback'];
+                        for (const o of optionalParams) {
+                            if(searchParams.getAll(o) != '' ){
+                                newHTML +="<tr class='bg-Autocomplete'><td>"+o+" </td><td>"+ searchParams.getAll(o) + "</b></td></tr>";
+                            }
+
+                        }
+                        newHTML +="<tr class='bg-Autocomplete'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
+                    newHTML +="</table>";
+                    newHTML += ": : : : :";
+                } else if((api == "/rrserver/api/engage/targeting") || (api == "/rrserver/api/engage/trackExperienceEvent") || (api == "/rrserver/api/engage/experiences")){
+                    newHTML += "<br /> : : : : :";
+                    newHTML +="<table border='0' class='bg-dxp'>";
+                        newHTML +="<tr class='bg-dxp'><td colspan='2'><strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
+                        newHTML +="<tr class='bg-dxp'><td><b>placements </b></td><td><b>"+ placements + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-dxp'><td><b>apiClientKey </b></td><td><b>"+ apiClientKey + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-dxp'><td>apiKey</td><td>"+ searchParams.getAll('apiKey') + "</b></td></tr>";
+                        newHTML +="<tr class='bg-dxp'><td>variations </td><td>"+ searchParams.getAll('variations') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-dxp'><td>Session Id </td><td>"+ searchParams.getAll('s') + sessionId + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-dxp'><td>productId </td><td>"+ productId + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-dxp'><td>Rcs </td><td>"+ searchParams.getAll('rcs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-dxp'><td>fpb </td><td>"+ searchParams.getAll('fpb') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-dxp'><td>searchTerm </td><td>"+ searchTerm + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-dxp'><td>experienceId </td><td>"+ searchParams.getAll('experienceId') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-dxp'><td>variationId </td><td>"+ searchParams.getAll('variationId') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-dxp'><td>triggerType </td><td>"+ searchParams.getAll('triggerType') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-dxp'><td>eventType </td><td>"+ searchParams.getAll('eventType') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-dxp'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
+                    newHTML +="</table>";
+                    newHTML += "<br /> : : : : :";
+                } else if(api == "/rrserver/p13n_generated.js"){
+                    newHTML += "<br /> : : : : :";
+                    newHTML +="<table border='0' class='bg-p13n'>";
+                        newHTML +="<tr class='bg-p13n'><td colspan='2'><strong>Time: </strong>" + searchParams.getAll('time') + " : : : : : : : : : : : :  <strong>Data Center: </strong>"+ searchParams.getAll('host')  + " : : : : : : : :  <strong>API: </strong>"+ api +"</a></p>"; 
+                        newHTML +="<tr class='bg-p13n'><td><b>placements </b></td><td><b>"+ searchParams.getAll('pt') + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-p13n'><td><b>apiClientKey </b></td><td><b>"+ apiClientKey + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-p13n'><td>apiKey</td><td>"+ searchParams.getAll('a') + "</b></td></tr>";
+                        newHTML +="<tr class='bg-p13n'><td>Session Id </td><td>"+ searchParams.getAll('s') + sessionId + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-p13n'><td>productId </td><td>"+ productId + "</b></td></tr>";  
+                        newHTML +="<tr class='bg-p13n'><td>Rcs </td><td>"+ searchParams.getAll('rcs') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>fpb </td><td>"+ searchParams.getAll('fpb') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>searchTerm </td><td>"+ searchTerm + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>pref </td><td>"+ searchParams.getAll('pref') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>userId </td><td>"+ searchParams.getAll('u') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>ts </td><td>"+ searchParams.getAll('ts') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>v </td><td>"+ searchParams.getAll('v') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>ssl </td><td>"+ searchParams.getAll('ssl') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>cn </td><td>"+ searchParams.getAll('cn') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>c </td><td>"+ searchParams.getAll('c') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>l </td><td>"+ searchParams.getAll('l') + "</b></td></tr>"; 
+                        newHTML +="<tr class='bg-p13n'><td>Full Request </td><td>"+ fullRequest + "</td></tr>"; 
+                    newHTML +="</table>";
+                    newHTML += " : : : : : <br />";
+                }
+
+            }
+            let content = getTag('content');
+            content.insertAdjacentHTML('afterbegin',newHTML);
+
+        };
+        function validate(requests){
+            var rcsCount = 0;
+            var rcsArray = [];
+            let newURL = '';
+            let requestsLines = requests.split(';');
+            var count = 1;
+            for (const r of requestsLines) {
+                readRequest(r,rcsCount,rcsArray);
+            }
+
+        }
+        function init(){
+            var targetFile = getTag("targetFile");
+            var fileReader = new FileReader();
+            var str = "";
+            fileReader.onload = function(e){
+                str += splitLines(fileReader.result);
+                validate(str);
+            }
+            targetFile.addEventListener('change',function(e){
+                var file = targetFile.files[0];
+                fileReader.readAsText(file);
+            });
+        }
+    </script>
+</head>
+<body onload="init();">
+    <div id="header">
+        <img src="https://rrcs.cachefly.net/clients/clientrequesttoolalg/images/alg-logo.png" alt="Algonomy" />
+        <small>Version 0.0.1</small>
+    </div>
+
+    <fieldset>
+        <legend>Filter by:</legend>
+    
+        <div>
+          <input type="checkbox" id="RecsForPlacements" name="RecsForPlacements" checked value="bg-recs4P">
+          <label for="RecsForPlacements" style="background-color: #c3e3ff">RecsForPlacements</label>
+        </div>
+    
+        <div>
+          <input type="checkbox" id="Find" name="Find" checked value="bg-Find">
+          <label for="Find" style="background-color: #f9fcb3">Find</label>
+        </div>
+    
+        <div>
+            <input type="checkbox" id="Autocomplete" name="Autocomplete" checked value="bg-Autocomplete">
+            <label for="Autocomplete" style="background-color: #fcdea2">Autocomplete</label>
+          </div>
+
+        <div>
+          <input type="checkbox" id="Engage" name="Engage" checked value="bg-Personalize">
+          <label for="Engage" style="background-color: #f9c3ff">Engage</label>
+        </div>
+    
+        <div>
+            <input type="checkbox" id="bg-dxp" name="bg-dxp" checked value="bg-dxp">
+            <label for="bg-dxp" style="background-color: #ffdff3">Dynamic Experience</label>
+        </div>
+
+        <div>
+          <input type="checkbox" id="Discover" name="Discover" checked value="bg-Discover">
+          <label for="Discover" style="background-color: #a2fcc1">Discover</label>
+        </div>
+        </div>
+    
+        <div>
+          <input type="checkbox" id="Recs-Clicks" name="Recs-Clicks" checked value="bg-RecsClick">
+          <label for="Recs-Clicks" style="background-color:#cccccc">Recs Clicks</label>
+        </div>
+        </div>
+    
+        <div>
+          <input type="checkbox" id="Find-Clicks" name="Find-Clicks" checked value="bg-FindClick">
+          <label for="Find-Clicks" style="background-color: #d7d89f">Find Clicks</label>
+        </div>
+
+    
+        <div>
+          <input type="checkbox" id="bg-p13n" name="bg-p13n" checked value="bg-p13n">
+          <label for="bg-p13n" style="background-color: #ffb6b6">P13N</label>
+        </div>
+    </fieldset>
+    <div id="fileSender">Please select the file:
+        <input type="file" id="targetFile" /><br/>
+    </div>
+
+
+
+    <div id="content">
+        <br />
+    </div>
+
+    <script>
+        $(document).ready(function() {
+                $('input[type="checkbox"]').click(function() {
+                    var inputValue = $(this).attr("value");
+                    $("." + inputValue).toggle();
+                });
+        });
+    </script>
+
+</body>
+</html>

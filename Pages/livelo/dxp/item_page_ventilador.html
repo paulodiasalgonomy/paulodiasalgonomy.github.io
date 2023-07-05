@@ -161,14 +161,14 @@
 
         window.R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
 
-        window.R3_COMMON.setSessionId(id_sessao); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
-        window.R3_COMMON.setUserId("user-test-algonomy");  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
-        window.R3_COMMON.addPlacementType('item_page');  // (!) chama os placements do tipo da página
+        window.R3_COMMON.setSessionId('sessao123456789'); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
+        window.R3_COMMON.setUserId("user-teste-algonomy0407-v4");  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
+        window.R3_COMMON.addPlacementType('category_page');  // (!) chama os placements do tipo da página
 
-        var R3_ITEM = new r3_item();
-        R3_ITEM.setId('LVL59835575');
+        var R3_CATEGORY = new r3_category();
+        R3_CATEGORY.setId('LVL59835575');
 
-        window.R3_COMMON.productId = R3_ITEM.id;
+        window.R3_COMMON.categoryId = R3_ITEM.id;
         window.R3_COMMON.placements = window.R3_COMMON.placementType; // Atribuido placement
         window.R3_COMMON.pref = document.referrer; // Atribuido url referer
         var script = document.createElement('script'); // Chama o clientJs

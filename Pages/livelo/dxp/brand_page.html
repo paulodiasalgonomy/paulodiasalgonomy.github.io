@@ -165,12 +165,11 @@
         window.R3_COMMON.setUserId("user-" + id_sessao + id_sessao);  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
         window.R3_COMMON.addPlacementType('item_page');  // (!) chama os placements do tipo da página
 
-        var R3_ITEM = new R3_ITEM();
-        R3_ITEM.setId('LVL188811');
+        var CART = new r3_cart();
 
-        window.R3_COMMON.productId = R3_ITEM.id;
-        window.R3_COMMON.placements = window.R3_COMMON.placementType; // Atribuido placement
-        window.R3_COMMON.pref = document.referrer; // Atribuido url referer
+
+        window.R3_CART.addItemId("LVL20438");
+        window.R3_COMMON.setCartValue(200005.00);
         var script = document.createElement('script'); // Chama o clientJs
         script.src = 'https://cdn.richrelevance.com/dashboard/applications/clientjs-dev/client.js';
         document.getElementsByTagName('head')[0].appendChild(script);
@@ -182,7 +181,7 @@
 
 
     <!-- O POP UP SERÁ EXIBIDO APÓS 90 SEGUNDOS NA PÁGINA-->
-    <h1>Brand Page - Apple</h1>
+    <h1>Cart Page</h1>
 </body>
 
 </html>

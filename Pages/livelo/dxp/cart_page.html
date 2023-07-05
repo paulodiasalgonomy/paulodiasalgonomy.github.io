@@ -161,17 +161,20 @@
 
         window.R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
 
-        window.R3_COMMON.setSessionId("sessao123456789"); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
+        window.R3_COMMON.setSessionId('sessao123456789'); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
         window.R3_COMMON.setUserId("user-teste-algonomy0407-v4");  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
-        window.R3_COMMON.addPlacementType('item_page');  // (!) chama os placements do tipo da página
-        var R3_ITEM = new r3_item(); //  (!) Define um novo objeto do tipo da página visualizada
-        R3_ITEM.setId('LVL53891930'); // (!) Precisa definir o ID da Produto Visitada (caso seja uma página do tipo Category)
-        R3_ITEM.setName('iPhone 13 Apple 128GB Meia-noite Tela de 6,1”, Câmera Dupla de 12MP'); // (!) Definir nome da Produto
+        window.R3_COMMON.addPlacementType('cart_page');  // (!) chama os placements do tipo da página
+        window.R3_COMMON.setCartValue(30000000);
 
-        // definições do DXP
-        window.R3_COMMON.productId = R3_ITEM.id; // Atribuido categoryId
-        window.R3_COMMON.placements = window.R3_COMMON.placementType; // Atribuido placement
-        window.R3_COMMON.pref = document.referrer; // Atribuido url referer
+        var R3_CART = new r3_cart();
+        //window.R3_COMMON.addItemId('LVL20438');
+        //window.R3_COMMON.addItemId('LVL20500');
+
+
+        //window.R3_CART.addItemID = R3_COMMON.itemIds;
+        window.R3_CART.addItemIdPriceQuantity('LVL20500','19999000000','1');
+        window.R3_CART.addItemIdPriceQuantity('LVL20438','45455640000','4');
+
         var script = document.createElement('script'); // Chama o clientJs
         script.src = 'https://cdn.richrelevance.com/dashboard/applications/clientjs-dev/client.js';
         document.getElementsByTagName('head')[0].appendChild(script);
@@ -181,9 +184,7 @@
 
     </script>
 
-
-    <!-- O POP UP SERÁ EXIBIDO APÓS 90 SEGUNDOS NA PÁGINA-->
-    <h1> Item Page - ProductID: LVL53891930 iPhone 13 Apple 128GB Meia-noite Tela de 6,1”, Câmera Dupla de 12MP</h1>
+    <h1>Cart Page</h1>
 </body>
 
 </html>

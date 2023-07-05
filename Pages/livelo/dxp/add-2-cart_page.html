@@ -163,13 +163,12 @@
 
         window.R3_COMMON.setSessionId("sessao123456789"); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
         window.R3_COMMON.setUserId("user-teste-algonomy0407-v4");  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
-        window.R3_COMMON.addPlacementType('item_page');  // (!) chama os placements do tipo da página
-        var R3_ITEM = new r3_item(); //  (!) Define um novo objeto do tipo da página visualizada
-        R3_ITEM.setId('LVL53891930'); // (!) Precisa definir o ID da Produto Visitada (caso seja uma página do tipo Category)
-        R3_ITEM.setName('iPhone 13 Apple 128GB Meia-noite Tela de 6,1”, Câmera Dupla de 12MP'); // (!) Definir nome da Produto
+        window.R3_COMMON.addPlacementType('add_to_cart_page');  // (!) chama os placements do tipo da página
+        var  R3_ADDTOCART = new r3_addtocart(); //  (!) Define um novo objeto do tipo da página visualizada
+        R3_ADDTOCART.addItemIdToCart('LVL53891930'); // (!) Precisa definir o ID da Produto Visitada (caso seja uma página do tipo Category)
 
         // definições do DXP
-        window.R3_COMMON.productId = R3_ITEM.id; // Atribuido categoryId
+        window.R3_COMMON.productId =  R3_ADDTOCART.id; // Atribuido categoryId
         window.R3_COMMON.placements = window.R3_COMMON.placementType; // Atribuido placement
         window.R3_COMMON.pref = document.referrer; // Atribuido url referer
         var script = document.createElement('script'); // Chama o clientJs
