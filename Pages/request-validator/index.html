@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!-- saved from url=(0055)https://paulodiasalgonomy.github.io/Pages/csvValidator/ -->
+<html lang="pt">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="styles.css">
+  <title>Algonomy - API Request Validation</title>
+
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+  
+  <script src="app.js"></script>
+</head>
+
+<body onload="init();" cz-shortcut-listen="true">
+  <header id="header">
+    <img src="./assets/algonomy.png" alt="Algonomy">
+    <span>version 0.0.2</span>
+  </header>
+
+  <section class="config">
+    <fieldset>
+      <legend>Filter by</legend>
+  
+      <div>
+        <input type="checkbox" id="RecsForPlacements" name="RecsForPlacements" checked="" value="bg-recsForPlacements">
+        <label for="RecsForPlacements" style="background-color: #c3e3ff">RecsForPlacements</label>
+      </div>
+  
+      <div>
+        <input type="checkbox" id="Find" name="Find" checked="" value="bg-find">
+        <label for="Find" style="background-color: #f9fcb3">Find</label>
+      </div>
+  
+      <div>
+        <input type="checkbox" id="Autocomplete" name="Autocomplete" checked="" value="bg-autocomplete">
+        <label for="Autocomplete" style="background-color: #fcdea2">Autocomplete</label>
+      </div>
+  
+      <div>
+        <input type="checkbox" id="Engage" name="Engage" checked="" value="bg-personalize">
+        <label for="Engage" style="background-color: #f9c3ff">Engage</label>
+      </div>
+  
+      <div>
+        <input type="checkbox" id="bg-dxp" name="bg-dxp" checked="" value="bg-dxp">
+        <label for="bg-dxp" style="background-color: #ffdff3">Dynamic Experiences</label>
+      </div>
+  
+      <div>
+        <input type="checkbox" id="Discover" name="Discover" checked="" value="bg-discover">
+        <label for="Discover" style="background-color: #a2fcc1">Discover</label>
+      </div>
+  
+      <div>
+        <input type="checkbox" id="Recs-Clicks" name="Recs-Clicks" checked="" value="bg-recsClick">
+        <label for="Recs-Clicks" style="background-color:#cccccc">Recs Clicks</label>
+      </div>
+  
+      <div>
+        <input type="checkbox" id="Find-Clicks" name="Find-Clicks" checked="" value="bg-findClick">
+        <label for="Find-Clicks" style="background-color: #d7d89f">Find Clicks</label>
+      </div>
+  
+      <div>
+        <input type="checkbox" id="bg-p13n" name="bg-p13n" checked="" value="bg-p13n">
+        <label for="bg-p13n" style="background-color: #ffb6b6">P13N</label>
+      </div>
+    </fieldset>
+  
+    <div id="fileSender">Please select the file:
+      <input type="file" id="targetFile"><br>
+    </div>
+  </section>
+
+  <section id="content">
+  </section>
+
+  <script>
+    $(document).ready(function () {
+      $('input[type="checkbox"]').click(function () {
+        var inputValue = $(this).attr("value");
+        $("." + inputValue).toggle();
+      });
+    });
+  </script>
+
+
+</body>
+
+</html>

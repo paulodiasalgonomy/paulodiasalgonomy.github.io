@@ -1,0 +1,140 @@
+*,
+html,
+body {
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+#header {
+  background: #1e6fff;
+  width: 100vw;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  color: white;
+  font-style: italic;
+}
+
+#header img {
+  max-width: 200px;
+}
+
+.config {
+  display: flex;
+}
+
+fieldset {
+  margin: 0 20px 0;
+  padding: 10px;
+  width: 300px;
+}
+
+fieldset legend {
+  padding: 10px;
+}
+
+#fileSender {
+  margin: 10px;
+  font-family: sans-serif;
+}
+
+#fileSender input {
+  padding: 20px 10px;
+  width: 400px;
+  background-color: #1e6fff;
+  color: aliceblue;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+table {
+  max-width: 100%;
+  width: 100%;
+  word-break: break-all;
+  border: 0;
+}
+
+table.apiTable {
+  margin-top: 15px;
+  padding: 5px;
+}
+
+#content {
+  padding-left: 20px;
+  padding-right: 20px;
+  clear: both;
+}
+
+td {
+  min-width: 250px;
+  border: 0;
+  border-bottom: 1px dotted #212121;
+  padding-top: 0.4%;
+  padding-bottom: 0.1%;
+}
+
+.bg-recsForPlacements {
+  background-color: #c3e3ff;
+}
+
+.bg-recsClick {
+  background-color: #cccccc;
+}
+
+.bg-personalize {
+  background-color: #f9c3ff;
+}
+
+.bg-findClick {
+  background-color: #d7d89f;
+}
+
+.bg-find {
+  background-color: #f9fcb3;
+}
+
+.bg-autocomplete {
+  background-color: #fcdea2;
+}
+
+.bg-discover {
+  background-color: #a2fcc1;
+}
+
+.bg-dxp {
+  background-color: #ffdff3;
+}
+
+.bg-p13n {
+  background-color: #ffb6b6;
+}
+
+.select {
+  color: #fff;
+  padding: 30px;
+  display: none;
+  margin-top: 30px;
+  width: 60%;
+  background: green
+}
+
+p {
+  background-color: #fff !important;
+}
+
+.warning {
+  color: #90640c
+}
+
+.error {
+  color: #870202;
+  font-weight: 600;
+}
