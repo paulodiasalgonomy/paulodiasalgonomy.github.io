@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"
+        integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style/default.css">
+    <title>Algonomy Instrumentation Wizard</title>
+</head>
+
+<body>
+    <div id="page-container">
+        <div id="content-wrap">
+            <section id="header">
+                <img src='./assets/algonomy-logo.png' alt='Algonomy Logo' />
+                <h1>Algonomy Instrumentation Wizard</h1>
+            </section>
+            <section id="formAPIs">
+                <div class="container">
+                    <h2>Select the APIs</h2>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch"
+                            id="RecForPlacements">
+                        <label class="form-check-label" for="RecForPlacements">RecForPlacements</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="Discover">
+                        <label class="form-check-label" for="Discover">Discover</label>
+                    </div>
+                    <!--<div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="RecForPlacementsContext">
+                        <label class="form-check-label" for="RecForPlacementsContext">RecForPlacementsContext</label>
+                    </div> -->
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="Find">
+                        <label class="form-check-label" for="Find">Find</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="Personalize">
+                        <label class="form-check-label" for="Personalize">Personalize</label>
+                    </div>
+                </div>
+            </section>
+
+            <section id="pages">
+                <div class="container">
+                    <h2>Which Types of pages do you want to instrument? </h2>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="HomePage">
+                        <label class="form-check-label" for="HomePage">Home Page</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="CategoryPage">
+                        <label class="form-check-label" for="CategoryPage">Category Page</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="GenericPage">
+                        <label class="form-check-label" for="GenericPage">Generic Page</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="SearchPage">
+                        <label class="form-check-label" for="SearchPage">Search Page</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="ItemPage"
+                            checked="checked">
+                        <label class="form-check-label" for="ItemPage">Item Page <i class="bi bi-info-circle"
+                                data-toggle="tooltip"
+                                data-placement="right" 
+                                title="Required: Item Page requests are mandatory to track user behavior"></i></label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="AddtoCartPage">
+                        <label class="form-check-label" for="AddtoCartPage">Add to Cart Page</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="CartPage">
+                        <label class="form-check-label" for="CartPage">Cart Page</label>
+                    </div>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input input-option" type="checkbox" role="switch"
+                            id="PurchaseCompletePage" checked="checked">
+                        <label class="form-check-label" for="PurchaseCompletePage">Purchase Complete Page <i
+                                class="bi bi-info-circle"
+                                data-toggle="tooltip"
+                                data-placement="right" 
+                                title="Required: Purchase Complete Page requests are mandatory to track user behavior"></i></label>
+                    </div>
+                </div>
+            </section>
+
+            <section id="mainInfo">
+                <div class="container">
+                    <h2>Enter Your Website Information</h2>
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text">apiKey </span>
+                        <input type="text" class="form-control form-input-text input-option"
+                            aria-label="API Key (Required)" aria-describedby="API Key (Required)" id="apiKey">
+                    </div>
+                    <p>Data Type: String | Unique key that identifies the site. Each partner has a unique API key that
+                        separates that partner’s data and traffic from other partners.  <i
+                        class="bi bi-info-circle"
+                        data-toggle="tooltip"
+                        data-placement="right" 
+                        title="Required: Purchase Complete Page requests are mandatory to track user behavior"></i></p>
+
+                    <div class="input-group input-group-lg">
+                        <span class="input-group-text">apiClientKey</span>
+                        <input type="text" class="form-control form-input-text input-option" aria-label="apiClientKey"
+                            aria-describedby="apiClientKey" id="apiClientKey">
+                    </div>
+                    <p>Data Type: String | Unique key specific to each API implementation. Identifies the specific
+                        application and channel.</p>
+                </div>
+            </section>
+
+            <section id="nav">
+                <div class="container">
+                    <!--<button type="button" class="btn btn-secondary btn-lg">Back</button>-->
+                    <a href="./HomePage.html" title="Go to Home Page Definition"><button type="button"
+                            class="btn btn-primary btn-lg">Next</button></a>
+                </div>
+            </section>
+        </div>
+        <div w3-include-html="footer.html"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-Rx+T1VzGupg4BHQYs2gCW9It+akI2MM/mndMCy36UVfodzcJcF0GGLxZIzObiEfa"
+        crossorigin="anonymous"></script>
+    <script src="./js/main.js"></script>
+</body>
+
+</html>

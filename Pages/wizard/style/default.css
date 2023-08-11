@@ -1,0 +1,189 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
+
+/***
+    The new CSS reset - version 1.9 (last updated 19.6.2023)
+    GitHub page: https://github.com/elad2412/the-new-css-reset
+***/
+
+/*
+    Remove all the styles of the "User-Agent-Stylesheet", except for the 'display' property
+    - The "symbol *" part is to solve Firefox SVG sprite bug
+    - The "html" element is excluded, otherwise a bug in Chrome breaks the CSS hyphens property (https://github.com/elad2412/the-new-css-reset/issues/36)
+ */
+*:where(:not(html, iframe, canvas, img, svg, video, audio):not(svg *, symbol *)) {
+    all: unset;
+    display: revert;
+}
+
+/* Preferred box-sizing value */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Reapply the pointer cursor for anchor tags */
+a,
+button {
+    cursor: revert;
+}
+
+/* Remove list styles (bullets/numbers) */
+ol,
+ul,
+menu {
+    list-style: none;
+}
+
+/* For images to not be able to exceed their container */
+img {
+    max-inline-size: 100%;
+    max-block-size: 100%;
+}
+
+/* removes spacing between cells in tables */
+table {
+    border-collapse: collapse;
+}
+
+/* Safari - solving issue when using user-select:none on the <body> text input doesn't working */
+input,
+textarea {
+    -webkit-user-select: auto;
+}
+
+/* revert the 'white-space' property for textarea elements on Safari */
+textarea {
+    white-space: revert;
+}
+
+/* minimum style to allow to style meter element */
+meter {
+    -webkit-appearance: revert;
+    appearance: revert;
+}
+
+/* preformatted text - use only for this feature */
+:where(pre) {
+    all: revert;
+}
+
+/* reset default text opacity of input placeholder */
+::placeholder {
+    color: unset;
+}
+
+/* remove default dot (•) sign */
+::marker {
+    content: initial;
+}
+
+/* fix the feature of 'hidden' attribute.
+   display:revert; revert to element instead of attribute */
+:where([hidden]) {
+    display: none;
+}
+
+/* revert for bug in Chromium browsers
+   - fix for the content editable attribute will work properly.
+   - webkit-user-select: auto; added for Safari in case of using user-select:none on wrapper element*/
+:where([contenteditable]:not([contenteditable="false"])) {
+    -moz-user-modify: read-write;
+    -webkit-user-modify: read-write;
+    overflow-wrap: break-word;
+    -webkit-line-break: after-white-space;
+    -webkit-user-select: auto;
+}
+
+/* apply back the draggable feature - exist only in Chromium and Safari */
+:where([draggable="true"]) {
+    -webkit-user-drag: element;
+}
+
+/* Revert Modal native behavior */
+:where(dialog:modal) {
+    all: revert;
+}
+
+.page-container {
+    margin-bottom: 00px;
+}
+
+#header {
+    text-align: center;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+#header h1 {
+    font-size: 1.5rem;
+}
+
+#header img {
+    max-width: 254px;
+    width: 80%;
+}
+
+h2 {
+    font-size: 1.1rem;
+}
+
+#mainInfo>div>p {
+    font-size: 0.7rem;
+    color: #656565;
+}
+
+#mainInfo>div {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+.input-group-text{
+    min-width: 143px;
+}
+#formAPIs>div,
+#pages>div {
+    max-width: 400px;
+    margin: 0 auto;
+    margin-bottom: 40px;
+}
+
+#nav>div {
+    text-align: center;
+    align-content: center;
+}
+
+.btn-lg {
+    min-width: 20%;
+}
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem;
+}
+
+footer {
+    background-color: rgb(79, 79, 79);
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    min-height: 100px;
+    text-align: center;
+    color: #a1a1a1;
+    padding: 20px;
+    font-size: small;
+    margin-top: 40px;
+    bottom: 0;
+    width: 100%;
+    height: 2.5rem;
+}
+
+.container {
+    border-bottom: 1px dotted #e3e3e3;
+    padding-bottom: 20px;
+}
+

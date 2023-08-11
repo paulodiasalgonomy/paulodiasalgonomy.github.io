@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown</title>
+    <link rel="stylesheet" href="owlcarousel/owl.carousel.min.css">
+    <link rel="stylesheet" href="owlcarousel/owl.theme.default.min.css">
+    <script src="https://media.richrelevance.com/rrserver/js/1.2/p13n.js"></script>
+    <script charset="utf-8" type="text/JavaScript" defer="defer">
+        // as linhas com (!) precisam ser dinâmicas, definidas de acorto com a página ou usuário
+
+        // Configuração básica
+        var R3_COMMON = new r3_common();
+        var id_sessao = (Math.random() + 1).toString(36).substring(7); //  (!)  Definimos uma sessão randomica para testes
+
+        // adicionado o tratamento de ambiente pela URL (Permite alterar o ambiente passando o parametro r3_env=integration na URL)
+        var rr_env = "integration"; // Em produção o padrao é 'recs' 
+        if (window.location.href.indexOf("r3_env=integration") > -1) {
+            rr_env = "integration";
+        }  
+        
+        window.R3_COMMON.setApiKey('e20fd45b1e19a8c6'); // API KEY da Livelo
+        window.R3_COMMON.apiClientKey = '2a52873853496275'; // adicionado apiClientKey
+
+        window.R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
+
+        window.R3_COMMON.setSessionId(id_sessao); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
+        window.R3_COMMON.setUserId("user-" + id_sessao + id_sessao);  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
+        window.R3_COMMON.addPlacementType('home_page');  // (!) chama os placements do tipo da página
+        var R3_HOME = new r3_home();
+        window.R3_COMMON.placements = window.R3_COMMON.placementType; // Atribuido placement
+        window.R3_COMMON.pref = document.referrer; // Atribuido url referer
+        var script = document.createElement('script'); // Chama o clientJs
+        script.src = 'https://cdn.richrelevance.com/dashboard/applications/clientjs-dev/client.js';
+        document.getElementsByTagName('head')[0].appendChild(script);
+
+        rr_flush_onload();
+        r3();
+
+    </script>
+
+</head>
+
+<body>
+    <div id="banner_hero">
+        <img src="https://dummyimage.com/1200x400/fff/000&text=hero" />
+    </div>
+    <div id="carousel__information">
+
+    </div>
+    <div id="banner_bottom">
+        <img src="https://dummyimage.com/1200x400/000000/fff&text=bottom" />
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="owlcarousel/owl.carousel.min.js"></script>
+</body>
+
+</html>
