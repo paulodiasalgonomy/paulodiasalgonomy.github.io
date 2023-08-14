@@ -142,7 +142,7 @@
 
 <body style="background-color: rgb(109, 109, 109);">
     <!-- Chama script base -->
-    <script src="https://media.richrelevance.com/rrserver/js/1.2/p13n.js"></script>
+    <script src="./p13n.js"></script>
     <script charset="utf-8" type="text/JavaScript" defer="defer">
         // as linhas com (!) precisam ser dinâmicas, definidas de acorto com a página ou usuário
 
@@ -172,7 +172,7 @@
 
 
         var script = document.createElement('script'); // Chama o clientJs
-        script.src = 'https://cdn.richrelevance.com/dashboard/applications/clientjs/2.0/client.js';
+        script.src = './client.js';
         document.getElementsByTagName('head')[0].appendChild(script);
 
         rr_flush_onload();
