@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Livelo</title>
+    <style>
+        html,
+        body,
+        div,
+        span,
+        applet,
+        object,
+        iframe,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6,
+        p,
+        blockquote,
+        pre,
+        a,
+        abbr,
+        acronym,
+        address,
+        big,
+        cite,
+        code,
+        del,
+        dfn,
+        em,
+        img,
+        ins,
+        kbd,
+        q,
+        s,
+        samp,
+        small,
+        strike,
+        strong,
+        sub,
+        sup,
+        tt,
+        var,
+        b,
+        u,
+        i,
+        center,
+        dl,
+        dt,
+        dd,
+        ol,
+        ul,
+        li,
+        fieldset,
+        form,
+        label,
+        legend,
+        table,
+        caption,
+        tbody,
+        tfoot,
+        thead,
+        tr,
+        th,
+        td,
+        article,
+        aside,
+        canvas,
+        details,
+        embed,
+        figure,
+        figcaption,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        output,
+        ruby,
+        section,
+        summary,
+        time,
+        mark,
+        audio,
+        video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        /* HTML5 display-role reset for older browsers */
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        menu,
+        nav,
+        section {
+            display: block;
+        }
+
+        body {
+            line-height: 1;
+        }
+
+        ol,
+        ul {
+            list-style: none;
+        }
+
+        blockquote,
+        q {
+            quotes: none;
+        }
+
+        blockquote:before,
+        blockquote:after,
+        q:before,
+        q:after {
+            content: '';
+            content: none;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+    </style>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body style="background-color: rgb(109, 109, 109);">
+    <!-- Chama script base -->
+    <script src="https://media.richrelevance.com/rrserver/js/1.2/p13n.js"></script>
+    <script charset="utf-8" type="text/JavaScript" defer="defer">
+        // as linhas com (!) precisam ser dinâmicas, definidas de acorto com a página ou usuário
+
+        // Configuração básica
+        var R3_COMMON = new r3_common();
+        //var id_sessao = (Math.random() + 1).toString(36).substring(7); //  (!)  Definimos uma sessão randomica para testes
+
+        // adicionado o tratamento de ambiente pela URL (Permite alterar o ambiente passando o parametro r3_env=integration na URL)
+        var rr_env = "recs"; // Em produção o padrao é 'recs' 
+        if (window.location.href.indexOf("r3_env=integration") > -1) {
+            rr_env = "integration";
+        }  
+        
+        window.R3_COMMON.setApiKey('e20fd45b1e19a8c6'); // API KEY da Livelo
+        window.R3_COMMON.apiClientKey = '2a52873853496275'; // adicionado apiClientKey
+
+        window.R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
+
+        window.R3_COMMON.setSessionId('teste-sessao-222'); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
+        window.R3_COMMON.setUserId("");  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
+        window.R3_COMMON.addPlacementType('category_page');  // (!) chama os placements do tipo da página
+
+        var R3_CATEGORY = new r3_category();
+        window.R3_CATEGORY.setId('5fa9871d4acac34d231c4401'); 
+        window.R3_CATEGORY.setName('Infantil');
+
+        window.R3_COMMON.placements = window.R3_COMMON.placementType; // Atribuido placement
+        window.R3_COMMON.pref = document.referrer; // Atribuido url referer
+
+        rr_flush_onload();
+        r3();
+        setTimeout(() => {
+            var script = document.createElement('script'); // Chama o clientJs
+            script.src = 'https://cdn.richrelevance.com/dashboard/applications/clientjs/2.0/client.js';
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }, 1000);
+
+
+    </script>
+
+
+    <!-- O POP UP SERÁ EXIBIDO APÓS 90 SEGUNDOS NA PÁGINA-->
+    <h1>GenericPage</h1>
+</body>
+
+</html>
