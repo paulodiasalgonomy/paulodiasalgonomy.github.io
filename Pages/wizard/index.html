@@ -25,24 +25,24 @@
                     <h2>Select the APIs</h2>
                     <div class="form-check form-switch">
                         <input class="form-check-input input-option" type="checkbox" role="switch"
-                            id="RecForPlacements">
-                        <label class="form-check-label" for="RecForPlacements">RecForPlacements</label>
+                            id="recsForPlacements">
+                        <label class="form-check-label" for="recsForPlacements">RecsForPlacements</label>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="Discover">
-                        <label class="form-check-label" for="Discover">Discover</label>
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="discover">
+                        <label class="form-check-label" for="discover">Discover</label>
                     </div>
                     <!--<div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="RecForPlacementsContext">
                         <label class="form-check-label" for="RecForPlacementsContext">RecForPlacementsContext</label>
                     </div> -->
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="Find">
-                        <label class="form-check-label" for="Find">Find</label>
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="find">
+                        <label class="form-check-label" for="find">Find</label>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="Personalize">
-                        <label class="form-check-label" for="Personalize">Personalize</label>
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="personalize">
+                        <label class="form-check-label" for="personalize">Personalize</label>
                     </div>
                 </div>
             </section>
@@ -51,44 +51,41 @@
                 <div class="container">
                     <h2>Which Types of pages do you want to instrument? </h2>
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="HomePage">
-                        <label class="form-check-label" for="HomePage">Home Page</label>
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="homePage">
+                        <label class="form-check-label" for="homePage">Home Page</label>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="CategoryPage">
-                        <label class="form-check-label" for="CategoryPage">Category Page</label>
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="categoryPage">
+                        <label class="form-check-label" for="categoryPage">Category Page</label>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="GenericPage">
-                        <label class="form-check-label" for="GenericPage">Generic Page</label>
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="genericPage">
+                        <label class="form-check-label" for="genericPage">Generic Page</label>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="SearchPage">
-                        <label class="form-check-label" for="SearchPage">Search Page</label>
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="searchPage">
+                        <label class="form-check-label" for="searchPage">Search Page</label>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="ItemPage"
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="itemPage"
                             checked="checked">
-                        <label class="form-check-label" for="ItemPage">Item Page <i class="bi bi-info-circle"
-                                data-toggle="tooltip"
-                                data-placement="right" 
+                        <label class="form-check-label" for="itemPage">Item Page <i class="bi bi-info-circle"
+                                data-toggle="tooltip" data-placement="right"
                                 title="Required: Item Page requests are mandatory to track user behavior"></i></label>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="AddtoCartPage">
-                        <label class="form-check-label" for="AddtoCartPage">Add to Cart Page</label>
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="addToCartPage">
+                        <label class="form-check-label" for="addToCartPage">Add to Cart Page</label>
                     </div>
                     <div class="form-check form-switch">
-                        <input class="form-check-input input-option" type="checkbox" role="switch" id="CartPage">
-                        <label class="form-check-label" for="CartPage">Cart Page</label>
+                        <input class="form-check-input input-option" type="checkbox" role="switch" id="cartPage">
+                        <label class="form-check-label" for="cartPage">Cart Page</label>
                     </div>
                     <div class="form-check form-switch">
                         <input class="form-check-input input-option" type="checkbox" role="switch"
-                            id="PurchaseCompletePage" checked="checked">
-                        <label class="form-check-label" for="PurchaseCompletePage">Purchase Complete Page <i
-                                class="bi bi-info-circle"
-                                data-toggle="tooltip"
-                                data-placement="right" 
+                            id="purchaseCompletePage" checked="checked">
+                        <label class="form-check-label" for="purchaseCompletePage">Purchase Complete Page <i
+                                class="bi bi-info-circle" data-toggle="tooltip" data-placement="right"
                                 title="Required: Purchase Complete Page requests are mandatory to track user behavior"></i></label>
                     </div>
                 </div>
@@ -103,11 +100,10 @@
                             aria-label="API Key (Required)" aria-describedby="API Key (Required)" id="apiKey">
                     </div>
                     <p>Data Type: String | Unique key that identifies the site. Each partner has a unique API key that
-                        separates that partner’s data and traffic from other partners.  <i
-                        class="bi bi-info-circle"
-                        data-toggle="tooltip"
-                        data-placement="right" 
-                        title="Required: Purchase Complete Page requests are mandatory to track user behavior"></i></p>
+                        separates that partner’s data and traffic from other partners. <i class="bi bi-info-circle"
+                            data-toggle="tooltip" data-placement="right"
+                            title="Required: Purchase Complete Page requests are mandatory to track user behavior"></i>
+                    </p>
 
                     <div class="input-group input-group-lg">
                         <span class="input-group-text">apiClientKey</span>
@@ -119,11 +115,92 @@
                 </div>
             </section>
 
+            <section>
+                <div class="attr-container">
+                    <h2>Required Parameters</h2>
+                    <div class="attribute-box">
+                        <div>
+                            <h3>userId</h3>
+                            <p>(required when user is logged)</p>
+                        </div>
+                        <div>
+                            <p>Data Type: string | Unique string to identify each user. All user behavior will be stored
+                                using this key. It is case-sensitive and should be the same UserId sent to {rr} in other
+                                applications.</p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="attribute-box">
+                        <div>
+                            <h3>sessionId (required )</h3>
+                        </div>
+                        <div>
+                            <p>Data Type: string | Identifies one visit, or use of a site or application by a user. Used
+                                to
+                                determine “scope” when building behavioral models.</p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="attribute-box">
+                        <div>
+                            <h3>rcs (required )</h3>
+                        </div>
+                        <div>
+                            <p>Algonomy Encrypted Cookies. It must be sent as received in the previous API response.</p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+
+
+                    <h2>Optional Parameters</h2>
+                    <div class="attribute-box">
+                        <div>
+                            <h3>ipor - Shopper IP address</h3>
+                                                        
+                            <div class="form-check form-switch">
+                                <input class="form-check-input input-option" type="checkbox" role="switch" id="homePage">
+                                <label class="form-check-label" for="homePage">Turn on to include on request</label>
+                                </div> 
+                        </div>
+                        <div>
+                            <p>Data Type: string | When using location-based strategies, use this parameter to relay the
+                                IP address to RichRelevance servers. Only use this parameter in a server to server
+                                implementation, when the API call is proxied or not originated by a browser.<br />
+                                <br /> IS REQUIRED TO CREATE GEOLOCALIZED CAMPAINGS
+                            </p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                    <div class="attribute-box">
+                        <div>
+                            <h3>pref - Referral URL</h3>
+                            
+                                <div class="form-check form-switch">
+                                <input class="form-check-input input-option" type="checkbox" role="switch" id="homePage">
+                                <label class="form-check-label" for="homePage">Turn on to include on request</label>
+                                </div> 
+                           
+                        </div>
+                        <div>
+                            <p>Data Type: string | The address from where the current user landed before seeing the
+                                current page. Use this value to enable Conditional Placements. Value must be
+                                URL-encoded.<br /><br />IS REQUIRED TO CREATE REFERRAL CAMPAINGS</p>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+
+                </div>
+            </section>
+
             <section id="nav">
                 <div class="container">
                     <!--<button type="button" class="btn btn-secondary btn-lg">Back</button>-->
-                    <a href="./HomePage.html" title="Go to Home Page Definition"><button type="button"
-                            class="btn btn-primary btn-lg">Next</button></a>
+                    <a onClick="javascript:nextPage('index.html');" title="Go to Home Page Definition"><button
+                            type="button" class="btn btn-primary btn-lg">Next</button></a>
                 </div>
             </section>
         </div>

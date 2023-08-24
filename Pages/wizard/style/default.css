@@ -105,9 +105,6 @@ meter {
     all: revert;
 }
 
-.page-container {
-    margin-bottom: 00px;
-}
 
 #header {
     text-align: center;
@@ -138,14 +135,20 @@ h2 {
     margin: 0 auto;
     margin-bottom: 40px;
 }
-.input-group-text{
+
+.input-group-text {
     min-width: 143px;
 }
+
 #formAPIs>div,
 #pages>div {
     max-width: 400px;
     margin: 0 auto;
     margin-bottom: 40px;
+}
+
+#nav {
+    margin-top: 40px;
 }
 
 #nav>div {
@@ -160,6 +163,8 @@ h2 {
 #page-container {
     position: relative;
     min-height: 100vh;
+    top: 60px;
+    margin-bottom: 0px;
 }
 
 #content-wrap {
@@ -187,3 +192,112 @@ footer {
     padding-bottom: 20px;
 }
 
+#main-header {
+    position: fixed;
+    display: block;
+    width: 100%;
+    background-color: #ffffff;
+    z-index: 999;
+}
+
+#page-header {
+    border-bottom: 1px solid #6c6c6c;
+    padding: 30px;
+    width: 100%;
+    background-color: #ffffff;
+
+}
+
+#progress-header {
+    border-radius: 0;
+    box-shadow: 1px 1px 1px #e3e3e3;
+    height: 4px;
+    background-color: rgb(235, 235, 235);
+}
+
+#progress-header-result {
+    border-radius: 0;
+    box-shadow: 1px 1px 1px #e3e3e3;
+    height: 4px;
+    background-color: rgb(235, 235, 235);
+}
+
+#progress-header-result div {
+    background-color: #0CD652 !important;
+}
+
+#page-header img {
+    width: 100px;
+    float: left;
+}
+
+#page-header h1 {
+    font-size: 18px;
+    float: right;
+    color: #4d4d4d;
+}
+
+.attr-container {
+    display: block;
+    width: 1240px;
+    margin: 0 auto;
+}
+
+
+.attribute-box {
+    background: #d3d3d3;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-height: 140px;
+}
+
+.attribute-box>div:nth-child(1) {
+    float: left;
+    width: 30%;
+}
+
+.attribute-box>div:nth-child(2) {
+    float: right;
+    width: 70%;
+}
+
+.attribute-box>div:nth-child(1)>h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+
+.parametersBox {
+    margin: 0 auto;
+    display: block;
+    width: 1240px;
+    border: 1px solid #e3e3e3;
+    padding: 30px;
+    background: #ffffff;
+}
+
+.titleBox {
+    display: inline-block;
+    position: sticky;
+    margin: 0 auto;
+    top: 472px;
+    transform: rotateZ(270deg);
+    width: 257px;
+    height: 122px;
+    text-align: center;
+}
+
+.titleBox h2 {
+    font-size: 1.8rem;
+    color: #5b5b5b;
+}
+
+#engageBox {
+    background: #f0f8ff;
+    padding: 28px;
+}
+
+#recsForPlacementsBox {
+    background: #f0fff3;
+    padding: 28px;
+}

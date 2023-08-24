@@ -148,10 +148,10 @@
 
         // Configuração básica
         var R3_COMMON = new r3_common();
-        var id_sessao = (Math.random() + 1).toString(36).substring(7); //  (!)  Definimos uma sessão randomica para testes
+        //var id_sessao = (Math.random() + 1).toString(36).substring(7); //  (!)  Definimos uma sessão randomica para testes
 
         // adicionado o tratamento de ambiente pela URL (Permite alterar o ambiente passando o parametro r3_env=integration na URL)
-        var rr_env = "integration"; // Em produção o padrao é 'recs' 
+        var rr_env = "recs"; // Em produção o padrao é 'recs' 
         if (window.location.href.indexOf("r3_env=integration") > -1) {
             rr_env = "integration";
         }  
@@ -161,27 +161,36 @@
 
         window.R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
 
-        window.R3_COMMON.setSessionId(id_sessao); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
-        window.R3_COMMON.setUserId("user-" + id_sessao + id_sessao);  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
-        window.R3_COMMON.addPlacementType('generic_page');  // (!) chama os placements do tipo da página
-        window.R3_COMMON.setPageBrand('Apple')
+        window.R3_COMMON.setSessionId('teste-sessao-222'); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
+        window.R3_COMMON.setUserId("");  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
+        window.R3_COMMON.addPlacementType('generic_page.current_url_ios');  // (!) chama os placements do tipo da página
+/*         R3_COMMON.addContext({
+        "userAttributeReplace":{
+            "url": "/minha-url3"
+        }
+        }); */
         var R3_GENERIC = new r3_generic();
-        // definições do DXP
-        window.R3_COMMON.fpb = R3_COMMON.brand;
+
+        //window.R3_COMMON.fpb = R3_COMMON.brand;
+        window.R3_COMMON.attribute = 'URL:minha-url3';
         window.R3_COMMON.placements = window.R3_COMMON.placementType; // Atribuido placement
+        //window.R3_COMMON.placements = 'generic_page.current_url_ios'; // Atribuido placement
         window.R3_COMMON.pref = document.referrer; // Atribuido url referer
-        var script = document.createElement('script'); // Chama o clientJs
-        script.src = 'https://cdn.richrelevance.com/dashboard/applications/clientjs-dev/client.js';
-        document.getElementsByTagName('head')[0].appendChild(script);
 
         rr_flush_onload();
         r3();
+        setTimeout(() => {
+            var script = document.createElement('script'); // Chama o clientJs
+            script.src = 'https://cdn.richrelevance.com/dashboard/applications/clientjs/2.0/client.js';
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }, 1000);
+
 
     </script>
 
 
     <!-- O POP UP SERÁ EXIBIDO APÓS 90 SEGUNDOS NA PÁGINA-->
-    <h1>Brand Page - Apple</h1>
+    <h1>GenericPage</h1>
 </body>
 
 </html>
