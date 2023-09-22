@@ -17,11 +17,177 @@
     <div id="main-header" w3-include-html="header.html"></div>
     <div id="page-container">
         <div id="content-wrap">
+
+
+            <div id="recsForPlacementsBox">
+                <div class="titleBox">
+                    <h2>Recs For Placements</h2>
+                </div>
+                <div class="parametersBox">
+                    <h2>Recs For Placements</h2>
+                    <p>
+                        <b>Description</b><br />
+
+                        This endpoint returns recommendations for a named placement and logs shopper behavior. The
+                        recommendations returned by the API respect all merchandising rules set up in the Omnichannel
+                        Personalization dashboard.
+                        <br /><br />
+
+                        <b>Endpoint</b><br />
+                        <span class="linkExample">
+                            https://&lt;environment&gt;.richrelevance.com/rrserver/api/rrPlatform/<b></b>recsForPlacements</b></span><br />
+
+                        Returns content for the given user and placement.<br /><br />
+                    </p>
+                    <h2>Required home page parameters</h2>
+                    <div class="mainly-attribute-box">
+                        <div>
+                            <h3>placements</h3>
+
+                            <div class="form-check form-switch">
+                                <input class="form-control form-input-text input-option" type="text" role="switch"
+                                    id="homePageEngagePlacements"
+                                    placeholder="Example: home_page.carousel_01|home_page.carousel_02">
+
+                            </div>
+                        </div>
+                        <div>
+                            <p><br />
+                                Data Type: String | List of placement identifiers separated by ‘|’. Each identifier
+                                consists of a page type (must begin with home_page) and a placement name.
+
+                                You will get one set of recommendations for each placement.
+
+                                The first placement is assumed to be the “best” placement and will receive the best
+                                recommendation strategy.
+
+                                When multiple placements are requested in the same call, each will receive a unique
+                                strategy and unique products.<br /><br />
+
+                                <b>Capturing clickstream behavior</b><br />
+
+                                Only specify home_page to report home page views without returning recommendations.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="clear"></div>
+
+
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="true"
+                                    aria-controls="flush-collapseOne">
+                                    Optional parameters - User Behavior or USER Context
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                    demonstrate the <code>.accordion-flush</code> class. This is the first item's
+                                    accordion body.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    Optional parameters - Catalog Filters
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                    demonstrate the <code>.accordion-flush</code> class. This is the second item's
+                                    accordion body. Let's imagine this being filled with some actual content.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                    Optional parameters - Developer
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                    demonstrate the <code>.accordion-flush</code> class. This is the third item's
+                                    accordion body. Nothing more exciting happening here in terms of content, but just
+                                    filling up the space to make it look, at least at first glance, a bit more
+                                    representative of how this would look in a real-world application.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <br /><br />
+                    <h2>RecsForPlacements request preview</h2>
+                    <div class="preview">
+                        https://&lt;environment&gt;.richrelevance.com/rrserver/api/personalize?apiKey=&apiClientKey=&userId=&lt;variable&gt;&sessionId=&lt;variable&gt;&rcs=&lt;variable&gt;&placements=&lt;variable&gt;<br />
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
             <div id="engageBox">
                 <div class="titleBox">
                     <h2>Personalize</h2>
                 </div>
                 <div class="parametersBox">
+                    <h2>Personalize</h2>
+                    <p>
+                        <b>Description</b><br />
+
+                        Build one-to-one relationships with all your customers by displaying content that engages them
+                        across all buying channels—web, mobile and in store. Algonomy Engage™ maps individual shopper
+                        behavior against advanced targeting and audience segmentation tools to enable marketers to
+                        personalize campaigns that deliver relevant content.<br /><br />
+
+                        <b>Endpoint</b><br />
+                        <span
+                            class="linkExample">https://&lt;environment&gt;.richrelevance.com/rrserver/api/<b>personalize</b></span><br />
+
+                        Returns content for the given user and placement.<br /><br />
+                    </p>
+                    <h2>Required home page parameters</h2>
+                    <div class="mainly-attribute-box">
+                        <div>
+                            <h3>placements</h3>
+
+                            <div class="form-check form-switch">
+                                <input class="form-control form-input-text input-option" type="text" role="switch"
+                                    id="homePageEngagePlacements"
+                                    placeholder="Example: home_page.carousel_01|home_page.carousel_02">
+
+                            </div>
+                        </div>
+                        <div>
+                            <p><br />
+                                Data Type: String | List of placement identifiers separated by ‘|’. Each identifier
+                                consists of a page type (must begin with home_page) and a placement name.
+
+                                You will get one set of recommendations for each placement.
+
+                                The first placement is assumed to be the “best” placement and will receive the best
+                                recommendation strategy.
+
+                                When multiple placements are requested in the same call, each will receive a unique
+                                strategy and unique products.<br /><br />
+
+                                <b>Capturing clickstream behavior</b><br />
+
+                                Only specify home_page to report home page views without returning recommendations.
+                            </p>
+                        </div>
+                    </div>
+
 
 
                     <h2>Optional Parameters</h2>
@@ -45,74 +211,68 @@
                     </div>
                     <div class="clear"></div>
 
-                    <div class="attribute-box">
-                        <div>
-                            <h3>pref - Referral URL</h3>
 
-                            <div class="form-check form-switch">
-                                <input class="form-check-input input-option" type="checkbox" role="switch"
-                                    id="homePage">
-                                <label class="form-check-label" for="homePage">Turn on to include on request</label>
+                    <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseOne" aria-expanded="true"
+                                    aria-controls="flush-collapseOne">
+                                    Optional parameters - User Behavior or USER Context
+                                </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                    demonstrate the <code>.accordion-flush</code> class. This is the first item's
+                                    accordion body.</div>
                             </div>
-
                         </div>
-                        <div>
-                            <p>Data Type: string | The address from where the current user landed before seeing the
-                                current page. Use this value to enable Conditional Placements. Value must be
-                                URL-encoded.<br /><br />IS REQUIRED TO CREATE REFERRAL CAMPAINGS</p>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                                    aria-controls="flush-collapseTwo">
+                                    Optional parameters - Catalog Filters
+                                </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                    demonstrate the <code>.accordion-flush</code> class. This is the second item's
+                                    accordion body. Let's imagine this being filled with some actual content.</div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#flush-collapseThree" aria-expanded="false"
+                                    aria-controls="flush-collapseThree">
+                                    Optional parameters - Developer
+                                </button>
+                            </h2>
+                            <div id="flush-collapseThree" class="accordion-collapse collapse"
+                                aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">Placeholder content for this accordion, which is intended to
+                                    demonstrate the <code>.accordion-flush</code> class. This is the third item's
+                                    accordion body. Nothing more exciting happening here in terms of content, but just
+                                    filling up the space to make it look, at least at first glance, a bit more
+                                    representative of how this would look in a real-world application.</div>
+                            </div>
                         </div>
                     </div>
-                    <div class="clear"></div>
+
+                    <br /><br />
+                    <h2>Personalize request preview</h2>
+                    <div class="preview">
+                        https://&lt;environment&gt;.richrelevance.com/rrserver/api/personalize?apiKey=&apiClientKey=&userId=&lt;variable&gt;&sessionId=&lt;variable&gt;&rcs=&lt;variable&gt;&placements=&lt;variable&gt;<br />
+                    </div>
                 </div>
-            </div>
 
 
-            <div id="recsForPlacementsBox">
-                <div class="titleBox">
-                    <h2>Recs for Placements</h2>
-                </div>
-                <div class="parametersBox">
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                    <br />udasuidushfuisdfhudshfuhidsfhsudifhudshfdsuifhsd
-                </div>
+
             </div>
+
             <section id="nav">
                 <div class="container">
                     <a onClick="javascript:prevPage('homePage.html');" title="Go back"><button type="button"

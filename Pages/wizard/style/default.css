@@ -245,7 +245,7 @@ footer {
 
 
 .attribute-box {
-    background: #d3d3d3;
+    background: #f1f1f1;
     padding: 10px;
     margin-bottom: 10px;
     min-height: 140px;
@@ -266,6 +266,49 @@ footer {
     font-weight: 600;
 }
 
+.mainly-attribute-box {
+    background: #f1f1f1;
+    padding: 10px;
+    margin-bottom: 10px;
+    min-height: 140px;
+    border: 1px solid #e3e3e3;
+    border-radius: 10px;
+}
+
+.mainly-attribute-box>div:nth-child(1) {
+    width: 100%;
+}
+
+.mainly-attribute-box>div:nth-child(2) {
+    width: 100%;
+}
+
+.mainly-attribute-box>div:nth-child(1)>h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+div.mainly-attribute-box>div:nth-child(1)>div {
+    padding-left: 0em;
+}
+
+
+#homePageEngagePlacements::placeholder,
+#homePageEngagePlacements::-ms-input-placeholder,
+#homePageEngagePlacements::-ms-input-placeholder {
+    color: #f1f1f1;
+    opacity: 0.3;
+    /* Firefox */
+}
+
+div.parametersBox>h2:nth-child(1) {
+    font-size: 1.7rem;
+}
+
+.linkExample {
+    font-weight: 300;
+}
+
 
 .parametersBox {
     margin: 0 auto;
@@ -274,30 +317,39 @@ footer {
     border: 1px solid #e3e3e3;
     padding: 30px;
     background: #ffffff;
+    border-radius: 10px;
 }
 
 .titleBox {
     display: inline-block;
     position: sticky;
     margin: 0 auto;
-    top: 472px;
-    transform: rotateZ(270deg);
-    width: 257px;
-    height: 122px;
+    top: 91vh;
     text-align: center;
+    overflow: visible;
+    width: 1%;
 }
 
 .titleBox h2 {
-    font-size: 1.8rem;
+    font-size: 0.8rem;
     color: #5b5b5b;
+    text-transform: uppercase;
+    padding: 4px;
+    transform: rotateZ(270deg);
+    white-space: nowrap;
+    background-color: #ffffff;
 }
 
 #engageBox {
     background: #f0f8ff;
-    padding: 28px;
 }
 
 #recsForPlacementsBox {
     background: #f0fff3;
-    padding: 28px;
+}
+
+.preview {
+    padding: 20px;
+    background-color: #e7e7e7;
+    margin-top: 30px;
 }

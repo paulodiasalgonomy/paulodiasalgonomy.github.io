@@ -1,6 +1,6 @@
 // LocalStorage Variables 
 // APIs
-localStorage.recsForPlacements = localStorage.recsForPlacements || false;
+localStorage.recsForPlacements = localStorage.recsForPlacements || true;
 localStorage.discover = localStorage.discover || false;
 localStorage.recsForPlacementsContext || false;
 localStorage.find = localStorage.find || false;

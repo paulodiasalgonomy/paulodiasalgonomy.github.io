@@ -161,29 +161,27 @@
 
         window.R3_COMMON.setBaseUrl('https://'+rr_env+'.richrelevance.com/rrserver/'); // Alterado a base da url para receber o ambiente pelo parametro
 
-        window.R3_COMMON.setSessionId('teste-sessao-222'); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
-        window.R3_COMMON.setUserId("");  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
-        window.R3_COMMON.addPlacementType('generic_page.current_url_ios');  // (!) chama os placements do tipo da página
-/*         R3_COMMON.addContext({
+        window.R3_COMMON.setSessionId('sessao-teste-3'); // o id de sessão deve ser único para cada usuário, sendo trocado assim que o pedido é finalizado.
+        window.R3_COMMON.setUserId("newId-paulodias3");  //  (!)  Se o usuário estiver logado, passar o ID dele aqui
+        window.R3_COMMON.addPlacementType('generic_page');  // (!) chama os placements do tipo da página
+        R3_COMMON.addContext({
         "userAttributeReplace":{
-            "url": "/minha-url3"
+            "currentUrl": "custom-site-test-tarja-algonomy"
         }
-        }); */
+        });
         var R3_GENERIC = new r3_generic();
 
-        //window.R3_COMMON.fpb = R3_COMMON.brand;
-        window.R3_COMMON.attribute = 'URL:minha-url3';
         window.R3_COMMON.placements = window.R3_COMMON.placementType; // Atribuido placement
-        //window.R3_COMMON.placements = 'generic_page.current_url_ios'; // Atribuido placement
         window.R3_COMMON.pref = document.referrer; // Atribuido url referer
 
         rr_flush_onload();
         r3();
+
         setTimeout(() => {
             var script = document.createElement('script'); // Chama o clientJs
             script.src = 'https://cdn.richrelevance.com/dashboard/applications/clientjs/2.0/client.js';
             document.getElementsByTagName('head')[0].appendChild(script);
-        }, 1000);
+        }, 500);
 
 
     </script>
